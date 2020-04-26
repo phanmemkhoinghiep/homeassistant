@@ -1,0 +1,9 @@
+# This card require for display a set of button 
+- url: /local/ui/cards/vertical-style-card.js?v=0.1
+    type: js
+# This card require for display programable button    
+  - url: /local/ui/cards/button-card.js
+    type: module    
+# This card require for input text for speaking announcement
+- url: /local/ui/cards/lovelace-multiline-text-input-card.js
+    type: module
