@@ -1,0 +1,148 @@
+input_select:
+  reading_speaker:
+    # name: Speakers
+    options: 
+      - Loa_Google
+      - Phone
+    initial: Loa_Google
+    # icon: mdi:speaker-wireless
+  playing_speaker:
+    # name: Speakers
+    options: 
+      - Loa_Google
+      - Phone
+    # initial: Loa_Google
+    # icon: mdi:speaker-wireless
+ 
+  reading_voice:
+   # name: Channel
+   options:
+      - Google_Voice_1
+      - Google_Voice_2
+      - Google_Voice_3
+      - Google_Voice_4   
+      - Viettel_Voice_1
+      - Viettel_Voice_2
+      - Viettel_Voice_3
+      - Viettel_Voice_4
+      - FPT_Voice_1
+      - FPT_Voice_2
+      - FPT_Voice_3
+      - FPT_Voice_4  
+  playing_type:
+   # name: Channel
+   options:
+      - Audio
+      - Video
+      
+input_number:
+
+  reading_volume:
+    # name: Volume
+    icon: mdi:volume-high
+    min: 0
+    max: 1
+    step: 0.05
+    initial: '0.4'    
+
+  reading_google_speed:
+    # name: Volume
+    icon: mdi:speedometer-medium
+    min: 0.36
+    max: 4.0
+    step: 0.1
+    initial: '1'   
+
+  reading_google_pitch:
+    # name: Volume
+    icon: mdi:speedometer-medium
+    min: -20
+    max: 20
+    step: 0.1
+    initial: '0'   
+
+  reading_viettel_speed:
+    # name: Volume
+    icon: mdi:speedometer-medium
+    min: 0.7
+    max: 1.3
+    step: 0.1
+    initial: '1'   
+
+  reading_fpt_speed:
+    # name: Volume
+    icon: mdi:speedometer-medium
+    min: -3
+    max: 3
+    step: 1
+    initial: '1'   
+    
+  playing_volume:
+    # name: Volume
+    icon: mdi:volume-high
+    min: 0
+    max: 1
+    step: 0.05
+    initial: '0.4'    
+
+input_text:
+
+  reading_ct_01:
+    name: Input for Content 01
+    # initial: Please type here for input
+    icon: mdi:report       
+    max: 255
+  reading_ct_02:
+    name: Input for Content 02
+    # initial: Please type here for input
+    icon: mdi:report       
+    max: 255
+    
+  reading_ct_03:
+    name: Input for Content 03
+    # initial: Please type here for input
+    icon: mdi:report        
+    max: 255
+
+  reading_ct_04:
+    name: Input for Content 04
+    # initial: Please type here for input
+    icon: mdi:report        
+    max: 255
+
+  reading_ct_05:
+    name: Input for Content 05
+    # initial: Please type here for input
+    icon: mdi:report        
+    max: 255
+    
+  playing_url:
+    # name: url link
+    # initial: Please type here for online link
+    icon: mdi:speaker-wireless        
+    max: 255
+
+input_boolean:
+  temp01:
+    name: Template
+  temp02:
+    name: Template
+  temp03:
+    name: Template
+    icon: mdi:radio
+  temp04:
+    name: Template
+    icon: mdi:radio
+    
+input_datetime:
+  reading_time:
+    name: Input for reading schedule
+    has_date: true
+    has_time: true    
+
+  playing_time:
+    name: Input for playing shedule
+    has_date: true
+    has_time: true      
+
+    
