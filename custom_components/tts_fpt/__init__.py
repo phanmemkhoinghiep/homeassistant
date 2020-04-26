@@ -39,21 +39,21 @@ def setup(hass, config):
         url = 'https://api.fpt.ai/hmi/tts/v5'
         # Header Parameters
         header_parameters = {'api_key': openfpt_api, 'speed': speed_read, 'prosody': '1', 'voice': voice_type}
-        text_message = text_message.encode('utf-8')
-        # Get url of audio file	
+        # Body
+	text_message = text_message.encode('utf-8')
+        # Get response from Server	
         response = requests.post(url, data = text_message, headers = header_parameters).json()['async']
-		    # Create unique audio file name
+        # Create unique audio file name
         uniq_filename = 'tts_fpt' + str(datetime.datetime.now().date()) + '_' + str(datetime.datetime.now().time()).replace(':', '.') + '.mp3'
         # Open audio file
         audio_file = open(CONF_FILE_PATH + uniq_filename, 'wb')
-        # Write audio byte to file
+        # Write audio content to file
         audio_file.write(response)
         audio_file.close()
-	        ## Play audio file on media player ##	
-        # media_content_id
-        url_audio = url_hass + CON_AUDIO_PATH + uniq_filename
+	# Play audio file with Home Assistant Service#	
+        url_file = url_hass + CON_AUDIO_PATH + uniq_filename
         # service data for 'CALL SERVICE' in Home Assistant
-        service_data = {'entity_id': media_id, 'media_content_id': url_audio, 'media_content_type': 'audio/mp3'}
+        service_data = {'entity_id': media_id, 'media_content_id': url_file, 'media_content_type': 'audio/mp3'}
         # Call service from Home Assistant
         hass.services.call('media_player', 'play_media', service_data)
         
