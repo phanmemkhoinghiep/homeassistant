@@ -1,4 +1,5 @@
 # homeassistant
-# This is my custom component, sensor and other my configuration for homeassistant 
 
-Source code from homeassistant https://www.home-assistant.io/
+This is my personal Home Assistant custom components and configuration. 
+
+(Original source from Home Assistant Offcial Website:https://www.home-assistant.io/)
