@@ -40,29 +40,21 @@ def setup(hass, config):
         url = 'https://viettelgroup.ai/voice/api/tts/v1/rest/syn'
         # Header Parameters
         headers = {'Content-type': 'application/json', 'token': viettel_token}
-        data = {'text': text_message, "voice": voice_type, "id": "2", "without_filter": False, "speed": speed_read, "tts_return_option": 3}
-        # Get url of audio file	
+        # Body Parameters
+	data = {'text': text_message, "voice": voice_type, "id": "2", "without_filter": False, "speed": speed_read, "tts_return_option": 3}
+        # Get response from Server
         response = requests.post(url, data = json.dumps(data), headers = headers)
-        # print(response.headers)
-		# Get status_code.
-		# print(response.status_code)
-		# Get the response data as a python object 
-
-        # Delete if File exist
-        # if os.path.exists(CONF_FILE_PATH):
-            # os.remove(CONF_FILE_PATH)
-
-        # Download audio file
+        # Create unique audio file name
         uniq_filename = 'tts_viettel_' + str(datetime.datetime.now().date()) + '_' + str(datetime.datetime.now().time()).replace(':', '.') + '.mp3'
+        # Open audio file     
         audio_file = open(CONF_FILE_PATH + uniq_filename, 'wb')
-        audio_file.write(response.content)
+        # Write audio content to file
+	audio_file.write(response.content)
         audio_file.close()
-	
-        ## Play audio file on media player ##	
-        # media_content_id
-        url_audio = url_hass + CON_AUDIO_PATH + uniq_filename
+	# Play audio file with Home Assistant Service#	
+        url_file = url_hass + CON_AUDIO_PATH + uniq_filename
         # service data for 'CALL SERVICE' in Home Assistant
-        service_data = {'entity_id': media_id, 'media_content_id': url_audio, 'media_content_type': 'audio/mp3'}
+        service_data = {'entity_id': media_id, 'media_content_id': url_file, 'media_content_type': 'audio/mp3'}
         # Call service from Home Assistant
         hass.services.call('media_player', 'play_media', service_data)
         
