@@ -1,0 +1,132 @@
+####################################################
+#                                                  #
+#                 System Sensor!                   #
+#                                                  #
+#################################################### 
+
+ 
+# Example configuration.yaml entry
+sensor:
+  # Own my public IPv4 address
+  - platform: dnsip
+  # Resolve IP address of home-assistant.io via Google DNS
+  - platform: dnsip
+    hostname: my-smarthome.ddns.net
+    name: sys_wanip
+    resolver: 8.8.8.8
+    
+  - platform: openweathermap
+    api_key: 'your API key that get on openweathermap'
+    name: out_weather
+    forecast: true
+    language: 'your_language_code'
+    monitored_conditions:
+      - weather
+      - temperature
+      - humidity
+      - wind_speed
+      - wind_bearing
+      - pressure
+      - clouds
+      - rain      
+  - platform: systemmonitor
+    resources:
+    - type: disk_use_percent
+      arg: /home
+    - type: disk_free
+      arg: /
+    - type: memory_use_percent
+    - type: memory_free
+    - type: processor_use
+    - type: network_in
+      arg: eth0
+    - type: network_out
+      arg: eth0
+    - type: throughput_network_in
+      arg: eth0
+    - type: throughput_network_out
+      arg: eth0    
+    - type: packets_in
+      arg: eth0
+    - type: packets_out
+      arg: eth0
+    - type: ipv4_address
+      arg: eth0
+    - type: ipv6_address
+      arg: eth0
+    - type: last_boot    
+    
+  - platform: command_line
+    name: sys_cpu_temp
+    command: "cat /sys/class/thermal/thermal_zone0/temp"
+    # If errors occur, make sure configuration file is encoded as UTF-8
+    unit_of_measurement: "°C"
+    value_template: '{{ value | multiply(0.001) | round(1) }}'
+
+  - platform: rpi_power
+    text_state: true
+
+  - platform: version
+
+    # My Vietnamese sensors for spell date, time
+  - platform: template
+    sensors:
+      sys_buoi:
+        value_template: >-
+          {% if now().strftime("%H")|int < 11 %} sáng {% elif now().strftime("%H")|int < 13 %} trưa {% elif now().strftime("%H")|int < 18 %} chiều {% else %} tối {% endif %}
+        entity_id: sensor.time_date
+  - platform: template
+    sensors:
+      sys_thu:
+        value_template: "{{ ['thứ hai','thứ ba','thứ tư','thứ năm','thứ sáu','thứ bảy','chủ nhật'][now().weekday()] }}"
+        entity_id: sensor.time_date
+  - platform: template
+    sensors:
+      sys_ngay:
+        value_template: "{{ ['một','hai','ba','tư','năm','sáu','bảy','tám','chín','mười','mười một','mười hai','mười ba','mười bốn','mười lăm','mười sáu','mười bảy','mười tám','mười chín','hai mươi','hai mươi mốt','hai mươi hai','hai mươi ba','hai mươi bốn','hai mươi lăm','hai mươi sáu','hai mươi bảy','hai mươi tám','hai mươi chín','ba mươi','ba mươi mốt' ][ now().day-1] }}"
+        entity_id: sensor.time_date
+  - platform: template
+    sensors:
+      sys_thang:
+        value_template: "{{ ['một','hai','ba','tư','năm','sáu','bảy','tám','chín','mười','mười một','mười hai'][now().month-1] }}"
+        entity_id: sensor.time_date
+  - platform: template
+    sensors:
+      sys_thu_ngay_thang:
+        value_template: >-
+          {{ states('sensor.sys_thu') }}, ngày {{ states('sensor.sys_ngay') }}, tháng {{ states('sensor.sys_thang') }} 
+          
+   # My sensors for speak announcement at the specificed time that indcated in input time from lovelace
+  # - platform: template
+    # sensors:
+      # reading_time:
+        # friendly_name: 'Reading Sensor'
+        # entity_id: sensor.time_date
+        # value_template: >
+          # {% if state_attr('input_datetime.reading_time', 'timestamp') | int == now().timestamp() -%}
+            # match
+          # {% elif state_attr('input_datetime.vacation_arrival', 'timestamp') | int > now().timestamp() -%}
+            # future            
+          # {% elif state_attr('input_datetime.reading_time', 'timestamp') | int < now().timestamp() -%}
+            # error
+          # {%- endif %}
+        # icon_template: >
+          # {% if state_attr('input_datetime.reading_time', 'timestamp') | int <= now().timestamp() and state_attr('input_datetime.vacation_arrival', 'timestamp') | int > now().timestamp() -%}
+            # mdi:time
+          # {% elif state_attr('input_datetime.vacation_arrival', 'timestamp') | int <= state_attr('input_datetime.reading_time', 'timestamp') | int -%}
+            # mdi:alert-circle
+          # {%- else -%}
+            # mdi:home
+          # {%- endif %}    
+
+
+  - platform: time_date
+    display_options:
+      - 'time'
+      - 'date'
+      - 'date_time'
+      - 'date_time_utc'
+      - 'date_time_iso'
+      - 'time_date'
+      - 'time_utc'
+      - 'beat'          
