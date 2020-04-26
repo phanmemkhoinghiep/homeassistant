@@ -39,7 +39,7 @@ def setup(hass, config):
         url = 'https://api.fpt.ai/hmi/tts/v5'
         # Header Parameters
         header_parameters = {'api_key': openfpt_api, 'speed': speed_read, 'prosody': '1', 'voice': voice_type}
-        # Body
+        # Body Parameters
 	text_message = text_message.encode('utf-8')
         # Get response from Server	
         response = requests.post(url, data = text_message, headers = header_parameters).json()['async']
