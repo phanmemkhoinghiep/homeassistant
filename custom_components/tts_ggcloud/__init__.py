@@ -16,7 +16,6 @@ CONF_VOICE_NAME = 'voice_name'
 
 # audio file path
 
-
 CONF_FILE_PATH = '/config/www/tts/'
 CON_AUDIO_PATH = '/local/tts/'
 
@@ -46,7 +45,7 @@ def setup(hass, config):
         url = 'https://texttospeech.googleapis.com/v1beta1/text:synthesize?key='+ api
         #Header Parameters
         headers = {'Content-type': 'application/json'}
-        #data = {'text': text_message, "voice": voice_type, "id": "2", "without_filter": False, "speed": speed, "tts_return_option": 3}
+        # Body Parameters
         data = { "audioConfig": { "audioEncoding": "MP3", "pitch": pitch, "speakingRate": speed },  "input": { "text": text_message }, "voice": { "languageCode": languageCode, "name": voice_name  }}
         #Get respounse from Server	
         response = requests.post(url, data = json.dumps(data), headers = headers)
@@ -62,17 +61,10 @@ def setup(hass, config):
         audio_file.write(audio_byte)
         audio_file.close()
 	
-			# The response's audio_content is binary.
-		# with open(uniq_filename, 'wb') as out:
-			# Write the response to the output file.
-			# out.write(response.audio_content)
-			# print('Audio content written to file "output.mp3"')
-		
-        ## Play audio file on media player ##	
-        # media_content_id
-        url_audio = url_hass + CON_AUDIO_PATH + uniq_filename
+	# Play audio file with Home Assistant Service#	
+        url_file = url_hass + CON_AUDIO_PATH + uniq_filename
         # service data for 'CALL SERVICE' in Home Assistant
-        service_data = {'entity_id': media_id, 'media_content_id': url_audio, 'media_content_type': 'audio/mp3'}
+        service_data = {'entity_id': media_id, 'media_content_id': url_file, 'media_content_type': 'audio/mp3'}
         # Call service from Home Assistant
         hass.services.call('media_player', 'play_media', service_data)
         
