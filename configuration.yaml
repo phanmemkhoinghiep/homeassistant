@@ -1,0 +1,14 @@
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+lovelace:
+  mode: yaml
+  
+homeassistant:
+  packages: !include_dir_named packages
+
+
+frontend:
+  javascript_version: latest
+
+
