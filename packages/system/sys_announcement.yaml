@@ -1,0 +1,58 @@
+ ####################################################
+#                                                   #
+#         System   Announcement                     #
+#                                                   #
+####################################################
+
+#Feedreader for auto reading from RSS Feed
+feedreader:
+  urls:
+  - https://dantri.com.vn/trangchu.rss 
+   
+  scan_interval:
+    minutes: 60
+  max_entries: 100
+
+# Text to speech Custom Component
+
+#TTS of Vietnamese FPT TTS
+tts_fpt:
+ api_key: 'your_key'
+ url: 'your hass base URL'
+ 
+tts_viettel:
+ token: 'your Viettel Token' 
+ url: 'your hass base URL'
+ 
+
+tts_ggcloud:
+ api: 'your Gooogle API' 
+ url: 'your hass base URL'
+ 
+# Intergrated Custom Component
+
+tts:
+
+  - platform: google_translate
+    cache: true
+    cache_dir: /tmp/tts
+    time_memory: 300
+    base_url: 'your hass base URL'
+    
+    service_name: google_say
+    language: 'vi'
+    
+  - platform: google_cloud
+    key_file: your_path_to_jfon
+    voice: your_voice
+    speed: 1.0
+    pitch: 0
+    gain: 0
+    service_name: gvoice
+    profiles:
+      - small-bluetooth-speaker-class-device
+      - large-home-entertainment-class-device    
+ 
+# Service for play some thing
+media_extractor:
+
