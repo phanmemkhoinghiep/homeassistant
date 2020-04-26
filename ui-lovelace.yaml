@@ -1,0 +1,20 @@
+
+resources:
+ !include lovelace/other/resources.yaml
+
+button_card_templates:
+  !include lovelace/templates/button_card_template.yaml
+  
+title: My Test
+background:  var(--background-image)
+  
+views: 
+
+  # - !include lovelace/views/00_main.yaml
+  # - !include lovelace/views/01_test_room.yaml  
+  - !include lovelace/views/02_speak.yaml
+  - !include lovelace/views/03_playback.yaml  
+  # - !include lovelace/views/04_network.yaml
+  # - !include lovelace/views/05_system.yaml   
+  # - !include lovelace/views/06_device.yaml
+  # - !include lovelace/views/07_zigbee_network.yaml
