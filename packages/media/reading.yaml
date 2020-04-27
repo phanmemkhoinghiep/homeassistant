@@ -1,0 +1,274 @@
+tts_viettel:
+tts_fpt:
+tts_ggcloud:
+      
+automation:
+  - id: 'announcement_11'
+    alias: "announcement_11"
+    trigger:
+      platform: template
+      value_template: "{{ states.sensor.time_date.state == as_timestamp(states.input_datetime.reading_time.state) | timestamp_custom('%H:%M, %Y-%m-%d', true) }}"
+    action:
+      service: script.start_reading    
+script:
+  start_reading:
+    sequence:  
+    - service: media_player.media_stop
+      data_template:
+        entity_id: >
+          {% if is_state("input_select.reading_speaker", "Loa_Google") %} media_player.van_phong
+          {% elif is_state("input_select.reading_speaker", "Phone") %} media_player.note4               
+          {% endif %} 
+    - service: media_player.volume_set
+      data_template:
+        entity_id: >
+          {% if is_state("input_select.reading_speaker", "Loa_Google") %} media_player.van_phong
+          {% elif is_state("input_select.reading_speaker", "Phone") %} media_player.note4               
+          {% endif %} 
+        volume_level: '{{  states.input_number.reading_volume.state  }}'
+
+    - service_template: >
+        {% if is_state("input_select.reading_voice", "Google_Voice_1") and is_state("input_select.reading_speaker", "Loa_Google") %} script.gg_reading_01
+        {% elif is_state("input_select.reading_voice", "Google_Voice_2") and is_state("input_select.reading_speaker", "Loa_Google") %} script.gg_reading_02         
+        {% elif is_state("input_select.reading_voice", "Google_Voice_3") and is_state("input_select.reading_speaker", "Loa_Google") %} script.gg_reading_03        
+        {% elif is_state("input_select.reading_voice", "Google_Voice_4") and is_state("input_select.reading_speaker", "Loa_Google") %} script.gg_reading_04        	        {% elif is_state("input_select.reading_voice", "Viettel_Voice_1") and is_state("input_select.reading_speaker", "Loa_Google") %} script.viettel_reading_01 
+        {% elif is_state("input_select.reading_voice", "Viettel_Voice_2") and is_state("input_select.reading_speaker", "Loa_Google") %} script.viettel_reading_02  
+        {% elif is_state("input_select.reading_voice", "Viettel_Voice_3") and is_state("input_select.reading_speaker", "Loa_Google") %} script.viettel_reading_03
+        {% elif is_state("input_select.reading_voice", "Viettel_Voice_4") and is_state("input_select.reading_speaker", "Loa_Google") %} script.viettel_reading_04        
+        {% elif is_state("input_select.reading_voice", "FPT_Voice_1") and is_state("input_select.reading_speaker", "Loa_Google") %} script.fpt_reading_01 
+        {% elif is_state("input_select.reading_voice", "FPT_Voice_2") and is_state("input_select.reading_speaker", "Loa_Google") %} script.fpt_reading_02  
+        {% elif is_state("input_select.reading_voice", "FPT_Voice_3") and is_state("input_select.reading_speaker", "Loa_Google") %} script.fpt_reading_03
+        {% elif is_state("input_select.reading_voice", "FPT_Voice_4") and is_state("input_select.reading_speaker", "Loa_Google") %} script.fpt_reading_04        
+        {% elif is_state("input_select.reading_voice", "Google_Voice_1") and is_state("input_select.reading_speaker", "Phone") %} script.gg_reading_05
+        {% elif is_state("input_select.reading_voice", "Google_Voice_2") and is_state("input_select.reading_speaker", "Phone") %} script.gg_reading_06        
+        {% elif is_state("input_select.reading_voice", "Google_Voice_2") and is_state("input_select.reading_speaker", "Phone") %} script.gg_reading_07
+        {% elif is_state("input_select.reading_voice", "Google_Voice_2") and is_state("input_select.reading_speaker", "Phone") %} script.gg_reading_08                
+        {% elif is_state("input_select.reading_voice", "Viettel_Voice_1") and is_state("input_select.reading_speaker", "Phone") %} script.viettel_reading_05 
+        {% elif is_state("input_select.reading_voice", "Viettel_Voice_2") and is_state("input_select.reading_speaker", "Phone") %} script.viettel_reading_06  
+        {% elif is_state("input_select.reading_voice", "Viettel_Voice_3") and is_state("input_select.reading_speaker", "Phone") %} script.viettel_reading_07
+        {% elif is_state("input_select.reading_voice", "Viettel_Voice_4") and is_state("input_select.reading_speaker", "Phone") %} script.viettel_reading_08   
+        {% elif is_state("input_select.reading_voice", "FPT_Voice_1") and is_state("input_select.reading_speaker", "Phone") %} script.fpt_reading_05 
+        {% elif is_state("input_select.reading_voice", "FPT_Voice_2") and is_state("input_select.reading_speaker", "Phone") %} script.fpt_reading_06  
+        {% elif is_state("input_select.reading_voice", "FPT_Voice_3") and is_state("input_select.reading_speaker", "Phone") %} script.fpt_reading_07
+        {% elif is_state("input_select.reading_voice", "FPT_Voice_4") and is_state("input_select.reading_speaker", "Phone") %} script.fpt_reading_08  
+        {% endif %}
+
+  stop_reading:
+    sequence:  
+    - service: media_player.media_stop
+      data_template:
+        entity_id: >
+          {% if is_state("input_select.reading_speaker", "Loa_Google") %} media_player.van_phong
+          {% elif is_state("input_select.reading_speaker", "Phone") %} media_player.note4               
+          {% endif %} 
+
+  gg_reading_01:
+    sequence:  
+    - service: tts_ggcloud.say
+      data_template:
+        entity_id: media_player.van_phong
+        message: "{{ states.input_text.reading_ct_01.state }}   {{ states.input_text.reading_ct_02.state }}   {{ states.input_text.reading_ct_03.state }}   {{ states.input_text.reading_ct_04.state }}   {{ states.input_text.reading_ct_05.state }}"
+        speed: '{{ states.input_number.reading_google_speed.state }}'
+        pitch: '{{ states.input_number.reading_google_pitch.state }}'
+        language: "vi-VN"
+        voice_name: "Google_Voice_1"
+  gg_reading_02:
+    sequence:  
+    - service: tts_ggcloud.say
+      data_template:
+        entity_id: media_player.van_phong
+        message: "{{ states.input_text.reading_ct_01.state }}   {{ states.input_text.reading_ct_02.state }}   {{ states.input_text.reading_ct_03.state }}   {{ states.input_text.reading_ct_04.state }}   {{ states.input_text.reading_ct_05.state }}"
+        speed: '{{ states.input_number.reading_google_speed.state }}'
+        pitch: '{{ states.input_number.reading_google_pitch.state }}'
+        language: "vi-VN"
+        voice_name: "Google_Voice_2"
+  gg_reading_03:
+    sequence:  
+    - service: tts_ggcloud.say
+      data_template:
+        entity_id: media_player.van_phong
+        message: "{{ states.input_text.reading_ct_01.state }}   {{ states.input_text.reading_ct_02.state }}   {{ states.input_text.reading_ct_03.state }}   {{ states.input_text.reading_ct_04.state }}   {{ states.input_text.reading_ct_05.state }}"
+        speed: '{{ states.input_number.reading_google_speed.state }}'
+        pitch: '{{ states.input_number.reading_google_pitch.state }}'
+        language: "vi-VN"
+        voice_name: "Google_Voice_3"
+  gg_reading_04:
+    sequence:  
+    - service: tts_ggcloud.say
+      data_template:
+        entity_id: media_player.van_phong
+        message: "{{ states.input_text.reading_ct_01.state }}   {{ states.input_text.reading_ct_02.state }}   {{ states.input_text.reading_ct_03.state }}   {{ states.input_text.reading_ct_04.state }}   {{ states.input_text.reading_ct_05.state }}"
+        speed: '{{ states.input_number.reading_google_speed.state }}'
+        pitch: '{{ states.input_number.reading_google_pitch.state }}'
+        language: "vi-VN"
+        voice_name: "Google_Voice_4"
+  gg_reading_05:
+    sequence:  
+    - service: tts_ggcloud.say
+      data_template:
+        entity_id: media_player.note4
+        message: "{{ states.input_text.reading_ct_01.state }}   {{ states.input_text.reading_ct_02.state }}   {{ states.input_text.reading_ct_03.state }}   {{ states.input_text.reading_ct_04.state }}   {{ states.input_text.reading_ct_05.state }}"
+        language: "vi-VN"
+        voice_name: 'Google_Voice_1'
+        speed: '{{ states.input_number.reading_google_speed.state }}'
+        pitch: '{{ states.input_number.reading_google_pitch.state }}'
+  gg_reading_06:
+    sequence:  
+    - service: tts_ggcloud.say
+      data_template:
+        entity_id: media_player.note4
+        message: "{{ states.input_text.reading_ct_01.state }}   {{ states.input_text.reading_ct_02.state }}   {{ states.input_text.reading_ct_03.state }}   {{ states.input_text.reading_ct_04.state }}   {{ states.input_text.reading_ct_05.state }}"
+        language: "vi-VN"
+        voice_name: 'Google_Voice_2'
+        speed: '{{ states.input_number.reading_google_speed.state }}'
+        pitch: '{{ states.input_number.reading_google_pitch.state }}'
+  gg_reading_07:
+    sequence:  
+    - service: tts_ggcloud.say
+      data_template:
+        entity_id: media_player.note4
+        message: "{{ states.input_text.reading_ct_01.state }}   {{ states.input_text.reading_ct_02.state }}   {{ states.input_text.reading_ct_03.state }}   {{ states.input_text.reading_ct_04.state }}   {{ states.input_text.reading_ct_05.state }}"
+        language: "vi-VN"
+        voice_name: 'Google_Voice_3'
+        speed: '{{ states.input_number.reading_google_speed.state }}'
+        pitch: '{{ states.input_number.reading_google_pitch.state }}'
+  gg_reading_08:
+    sequence:  
+    - service: tts_ggcloud.say
+      data_template:
+        entity_id: media_player.note4
+        message: "{{ states.input_text.reading_ct_01.state }}   {{ states.input_text.reading_ct_02.state }}   {{ states.input_text.reading_ct_03.state }}   {{ states.input_text.reading_ct_04.state }}   {{ states.input_text.reading_ct_05.state }}"
+        language: "vi-VN"
+        voice_name: 'Google_Voice_4'
+        speed: '{{ states.input_number.reading_google_speed.state }}'
+        pitch: '{{ states.input_number.reading_google_pitch.state }}'
+
+  viettel_reading_01:
+    sequence:  
+    - service: tts_viettel.say
+      data_template:
+        entity_id: media_player.van_phong
+        message: "{{ states.input_text.reading_ct_01.state }}   {{ states.input_text.reading_ct_02.state }}   {{ states.input_text.reading_ct_03.state }}   {{ states.input_text.reading_ct_04.state }}   {{ states.input_text.reading_ct_05.state }}"
+        voice_type: 'nu_mien_bac_1'
+        speed: '{{ states.input_number.reading_viettel_speed.state }}'        
+
+  viettel_reading_02:
+    sequence:  
+    - service: tts_viettel.say
+      data_template:
+        entity_id: media_player.van_phong
+        message: "{{ states.input_text.reading_ct_01.state }}   {{ states.input_text.reading_ct_02.state }}   {{ states.input_text.reading_ct_03.state }}   {{ states.input_text.reading_ct_04.state }}   {{ states.input_text.reading_ct_05.state }}"
+        voice_type: 'nam_mien_bac_1'
+        speed: '{{ states.input_number.reading_viettel_speed.state }}'  
+  viettel_reading_03:
+    sequence:  
+    - service: tts_viettel.say
+      data_template:
+        entity_id: media_player.van_phong
+        message: "{{ states.input_text.reading_ct_01.state }}   {{ states.input_text.reading_ct_02.state }}   {{ states.input_text.reading_ct_03.state }}   {{ states.input_text.reading_ct_04.state }}   {{ states.input_text.reading_ct_05.state }}"
+        voice_type: 'nu_mien_trung_1'
+        speed: '{{ states.input_number.reading_viettel_speed.state }}'
+  viettel_reading_04:
+    sequence:  
+    - service: tts_viettel.say
+      data_template:
+        entity_id: media_player.van_phong        
+        message: "{{ states.input_text.reading_ct_01.state }}   {{ states.input_text.reading_ct_02.state }}   {{ states.input_text.reading_ct_03.state }}   {{ states.input_text.reading_ct_04.state }}   {{ states.input_text.reading_ct_05.state }}"
+        voice_type: 'nu_mien_nam_1'
+        speed: '{{ states.input_number.reading_viettel_speed.state }}'
+  viettel_reading_05:
+    sequence:  
+    - service: tts_viettel.say
+      data_template:
+        entity_id: media_player.note4   
+        message: "{{ states.input_text.reading_ct_01.state }}   {{ states.input_text.reading_ct_02.state }}   {{ states.input_text.reading_ct_03.state }}   {{ states.input_text.reading_ct_04.state }}   {{ states.input_text.reading_ct_05.state }}"
+        voice_type: 'nu_mien_bac_1'
+        speed: '{{ states.input_number.reading_viettel_speed.state }}'          
+  viettel_reading_06:
+    sequence:  
+    - service: tts_viettel.say
+      data_template:
+        entity_id: media_player.note4   
+        message: "{{ states.input_text.reading_ct_01.state }}   {{ states.input_text.reading_ct_02.state }}   {{ states.input_text.reading_ct_03.state }}   {{ states.input_text.reading_ct_04.state }}   {{ states.input_text.reading_ct_05.state }}"
+        voice_type: 'nam_mien_bac_1'
+        speed: '{{ states.input_number.reading_viettel_speed.state }}'
+  viettel_reading_07:
+    sequence:  
+    - service: tts_viettel.say
+      data_template:
+        entity_id: media_player.note4   
+        message: "{{ states.input_text.reading_ct_01.state }}   {{ states.input_text.reading_ct_02.state }}   {{ states.input_text.reading_ct_03.state }}   {{ states.input_text.reading_ct_04.state }}   {{ states.input_text.reading_ct_05.state }}"
+        voice_type: 'nu_mien_trung_1'
+        speed: '{{ states.input_number.reading_viettel_speed.state }}'
+  viettel_reading_08:
+    sequence:  
+    - service: tts_viettel.say
+      data_template:
+        entity_id: media_player.note4    
+        message: "{{ states.input_text.reading_ct_01.state }}   {{ states.input_text.reading_ct_02.state }}   {{ states.input_text.reading_ct_03.state }}   {{ states.input_text.reading_ct_04.state }}   {{ states.input_text.reading_ct_05.state }}"
+        voice_type: 'nu_mien_nam_1'    
+        speed: '{{ states.input_number.reading_viettel_speed.state }}'  
+  fpt_reading_01:
+    sequence:  
+    - service: tts_fpt.say
+      data_template:
+        entity_id: media_player.van_phong   
+        message: "{{ states.input_text.reading_ct_01.state }}   {{ states.input_text.reading_ct_02.state }}   {{ states.input_text.reading_ct_03.state }}   {{ states.input_text.reading_ct_04.state }}   {{ states.input_text.reading_ct_05.state }}"
+        voice_type: 'nam_mien_bac'
+        speed: '{{ states.input_number.reading_fpt_speed.state }}'          
+  fpt_reading_02:
+    sequence:  
+    - service: tts_fpt.say
+      data_template:
+        entity_id: media_player.van_phong   
+        message: "{{ states.input_text.reading_ct_01.state }}   {{ states.input_text.reading_ct_02.state }}   {{ states.input_text.reading_ct_03.state }}   {{ states.input_text.reading_ct_04.state }}   {{ states.input_text.reading_ct_05.state }}"
+        voice_type: 'nu_mien_bac'
+        speed: '{{ states.input_number.reading_fpt_speed.state }}'
+  fpt_reading_03:
+    sequence:  
+    - service: tts_fpt.say
+      data_template:
+        entity_id: media_player.van_phong  
+        message: "{{ states.input_text.reading_ct_01.state }}   {{ states.input_text.reading_ct_02.state }}   {{ states.input_text.reading_ct_03.state }}   {{ states.input_text.reading_ct_04.state }}   {{ states.input_text.reading_ct_05.state }}"
+        voice_type: 'nu_mien_trung'
+        speed: '{{ states.input_number.reading_fpt_speed.state }}'
+  fpt_reading_04:
+    sequence:  
+    - service: tts_fpt.say
+      data_template:
+        entity_id: media_player.van_phong    
+        message: "{{ states.input_text.reading_ct_01.state }}   {{ states.input_text.reading_ct_02.state }}   {{ states.input_text.reading_ct_03.state }}   {{ states.input_text.reading_ct_04.state }}   {{ states.input_text.reading_ct_05.state }}"
+        voice_type: 'nu_mien_nam'    
+        speed: '{{ states.input_number.reading_fpt_speed.state }}'
+  fpt_reading_05:
+    sequence:  
+    - service: tts_fpt.say
+      data_template:
+        entity_id: media_player.note4   
+        message: "{{ states.input_text.reading_ct_01.state }}   {{ states.input_text.reading_ct_02.state }}   {{ states.input_text.reading_ct_03.state }}   {{ states.input_text.reading_ct_04.state }}   {{ states.input_text.reading_ct_05.state }}"
+        voice_type: 'nam_mien_bac'
+        speed: '{{ states.input_number.reading_fpt_speed.state }}'          
+  fpt_reading_06:
+    sequence:  
+    - service: tts_fpt.say
+      data_template:
+        entity_id: media_player.note4   
+        message: "{{ states.input_text.reading_ct_01.state }}   {{ states.input_text.reading_ct_02.state }}   {{ states.input_text.reading_ct_03.state }}   {{ states.input_text.reading_ct_04.state }}   {{ states.input_text.reading_ct_05.state }}"
+        voice_type: 'nu_mien_bac'
+        speed: '{{ states.input_number.reading_fpt_speed.state }}'
+  fpt_reading_07:
+    sequence:  
+    - service: tts_fpt.say
+      data_template:
+        entity_id: media_player.note4   
+        message: "{{ states.input_text.reading_ct_01.state }}   {{ states.input_text.reading_ct_02.state }}   {{ states.input_text.reading_ct_03.state }}   {{ states.input_text.reading_ct_04.state }}   {{ states.input_text.reading_ct_05.state }}"
+        voice_type: 'nu_mien_trung'
+        speed: '{{ states.input_number.reading_fpt_speed.state }}'
+  fpt_reading_08:
+    sequence:  
+    - service: tts_fpt.say
+      data_template:
+        entity_id: media_player.note4    
+        message: "{{ states.input_text.reading_ct_01.state }}   {{ states.input_text.reading_ct_02.state }}   {{ states.input_text.reading_ct_03.state }}   {{ states.input_text.reading_ct_04.state }}   {{ states.input_text.reading_ct_05.state }}"
+        voice_type: 'nu_mien_nam'    
+        speed: '{{ states.input_number.reading_fpt_speed.state }}'
