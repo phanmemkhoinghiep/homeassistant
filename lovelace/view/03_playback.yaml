@@ -1,0 +1,172 @@
+title: Playback
+icon: mdi:cast-audio
+path: playback 
+panel: false # this renders the first card on full width, other cards in this view will not be rendered
+cards: 
+                  
+  - type: custom:vertical-style-card
+    title: Phát nhạc/hình trực tuyến
+    style:
+      font_size: 16px
+      border: true
+      background_color: var(--secondary-background-color)
+    cards:
+      - type: horizontal-stack
+        cards:       
+          - type: entities                 
+            entities:
+            - entity: input_select.playing_speaker
+              name: Chọn Loa              
+            - entity: input_number.playing_volume
+              name: Âm lượng                           
+      
+            - type: custom:lovelace-multiline-text-input-card
+              autosave: true
+              entity: input_text.playing_url
+              # max_length: 50
+              min_length: 0
+              placeholder_text: 'Nhập link vào đây'
+              title: Nhập Link
+              buttons:
+                save: false
+                paste: false
+                clear: false
+              icons:
+                paste: mdi:content-paste
+                clear: mdi:autorenew   
+                
+            - entity: input_select.playing_type
+              name: Kiểu Nhạc/Hình                     
+            # style: |
+              # ha-card {
+                # font-variant: caps;
+                # border-radius: 10px;         
+              # }
+              # .card-header {
+                # font-size: 12px;
+              # }                            
+
+                
+      - type: horizontal-stack
+        cards:       
+        - type: custom:button-card
+          entity: input_boolean.temp02
+          layout: vertical
+          show_name: false
+          show_label: false
+          tap_action:
+            action: call-service
+            service: script.start_playing     
+          icon: mdi:play-box
+         # icon: >
+              # [[[
+                # if (entity.state =='off') return 'mdi:play-box';
+                # if (entity.state =='on') return 'mdi:play-box';
+                # else return 'mdi:alert-octagon-outline';
+              # ]]]                  
+          styles:
+            card:
+              - border-radius: 15%
+              - width: 50px
+              - height: 50px
+              - font-size: 12px
+            icon:
+              - color: green
+              # - color: >
+                  # [[[
+                    # if (entity.state =='off') return 'rgb(176,196,222)';
+                    # if (entity.state =='on') return 'gold';
+                    # else return 'grey';
+                  # ]]]
+              - width: 30px
+              - height: 30px                                   
+
+                
+        - type: custom:button-card
+          entity: input_boolean.temp02
+          layout: vertical
+          show_name: false
+          show_label: false
+          tap_action:
+            action: call-service
+            service: script.stop_playing      
+          icon: mdi:stop-circle
+         # icon: >
+              # [[[
+                # if (entity.state =='off') return 'mdi:play-box';
+                # if (entity.state =='on') return 'mdi:play-box';
+                # else return 'mdi:alert-octagon-outline';
+              # ]]]                  
+          styles:
+            card:
+              - border-radius: 15%
+              - width: 50px
+              - height: 50px
+              - font-size: 12px
+            icon:
+              - color: red
+              # - color: >
+                  # [[[
+                    # if (entity.state =='off') return 'rgb(176,196,222)';
+                    # if (entity.state =='on') return 'gold';
+                    # else return 'grey';
+                  # ]]]
+              - width: 30px
+              - height: 30px                                   
+                                         
+      - type: horizontal-stack
+        cards:       
+          - type: entities                 
+            entities:     
+            - entity: input_datetime.playing_time
+              name: Giờ phát
+              format: datetime
+              
+  # - type: custom:vertical-style-card
+    # title: Phát Youtube
+    # style:
+      # font_size: 16px
+      # border: true
+      # background_color: var(--secondary-background-color)
+    # cards:
+      # - type: horizontal-stack
+        # cards:       
+          # - type: entities                 
+            # entities:
+            # - entity: input_text.youtube
+              # name: Tìm kiếm
+              # 
+            # - entity: input_select.youtube_playlist
+              # name: Chọn theo Playlist
+              # secondary_info: last-changed
+            # - entity: input_select.media_player
+              # name: Chọn Loa              
+            # - entity: input_number.volume_music
+              # name: Âm lượng              
+            # - entity: input_boolean.play_youtube
+              # name: Play Youtube  
+            # style: |
+              # ha-card {
+                # font-variant: caps;
+                # border-radius: 10px;         
+              # }
+              # .card-header {
+                # font-size: 12px;
+              # }
+  - type: custom:vertical-style-card
+    title: Danh sách loa
+    style:
+      font_size: 16px
+      border: true
+      background_color: var(--secondary-background-color)
+    cards:    
+      - type: horizontal-stack
+        cards: 
+          - type: media-control        
+            entity: media_player.van_phong           
+            name: Loa Google   
+      - type: horizontal-stack
+        cards:             
+          - type: media-control        
+            entity: media_player.note4           
+            name: Điện thoại                        
