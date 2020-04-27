@@ -7,17 +7,15 @@ We need create a folder with name is tts in your homeassistant local folder to s
 This is the example of speaking using this Service
 
 script:
-  gg_reading_01:
+  gg_reading_01:  #May be from your script name
     sequence:  
     - service: tts_ggcloud.say
       data_template:
         entity_id: media_player.van_phong
-        message: "Your text input here"
-        speed: '1.0'
-        pitch: '0'
-        language: "vi-VN"
-        voice_name: "vi-VN-Wavenet-A"
-
-
+        message: "Your text input here" #May be from your input_text
+        speed: '1.0' #May be from your input_number
+        pitch: '0' #May be from your input_number
+        language: "vi-VN" #May be from your input_select
+        voice_name: "vi-VN-Wavenet-A"' #May be from your input_select
 
 Thank you!
