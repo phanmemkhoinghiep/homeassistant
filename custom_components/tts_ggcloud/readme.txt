@@ -12,9 +12,9 @@ script:
     - service: tts_ggcloud.say
       data_template:
         entity_id: media_player.van_phong
-        message: "{{ states.input_text.reading_ct_01.state }}"
-        speed: '{{ states.input_number.reading_google_speed.state }}'
-        pitch: '{{ states.input_number.reading_google_pitch.state }}'
+        message: "Your text input here"
+        speed: '1.0'
+        pitch: '0'
         language: "vi-VN"
         voice_name: "vi-VN-Wavenet-A"
 
