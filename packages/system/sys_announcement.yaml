@@ -18,43 +18,20 @@ feedreader:
 #TTS of Vietnamese FPT TTS
 tts_fpt:
  api_key: 'your_key'
-  #See in the /custom_components/tts_fpt/readme.txt for more detail how to create Google API
+  #See in the /custom_components/tts_fpt/readme.txt for more detail how to create FPT API
  url: 'your hass base URL'
- 
+
+#TTS of Vietnamese Viettel TTS
 tts_viettel:
  token: 'your Viettel Token' 
-   #See in the /custom_components/tts_viettel/readme.txt for more detail how to create Google API
+   #See in the /custom_components/tts_viettel/readme.txt for more detail how to create Viettel API
  url: 'your hass base URL'
  
-
+#TTS of Google Cloud TTS
 tts_ggcloud:
  api: 'your Gooogle API' 
  #See in the /custom_components/tts_ggcloud/readme.txt for more detail how to create Google API
  url: 'your hass base URL'
- 
-# Intergrated Custom Component
-
-tts:
-
-  - platform: google_translate
-    cache: true
-    cache_dir: /tmp/tts
-    time_memory: 300
-    base_url: 'your hass base URL'
-    
-    service_name: google_say
-    language: 'vi'
-    
-  - platform: google_cloud
-    key_file: your_path_to_jfon
-    voice: your_voice
-    speed: 1.0
-    pitch: 0
-    gain: 0
-    service_name: gvoice
-    profiles:
-      - small-bluetooth-speaker-class-device
-      - large-home-entertainment-class-device    
  
 # Service for play some thing
 media_extractor:
