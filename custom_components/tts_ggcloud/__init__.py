@@ -1,5 +1,4 @@
 
-
 # Declare variables
 DOMAIN = 'tts_ggcloud'
 SERVICE_GGCLOUD_TTS = 'say'
@@ -33,21 +32,21 @@ def setup(hass, config):
         api = str(config[DOMAIN][CONF_API])
         # Get data service
         media_id = data_call.data.get(CONF_PLAYER_ID)
-        text_message = str(data_call.data.get(CONF_MESSAGE)[0:2000])
+        message = str(data_call.data.get(CONF_MESSAGE)[0:2000])
         voice_name = data_call.data.get(CONF_VOICE_NAME)
         speed = data_call.data.get(CONF_SPEED)
         pitch = data_call.data.get(CONF_PITCH)
         languageCode = data_call.data.get(CONF_LANGUAGE_CODE)
         # List voice of Google Speech Synthesis
-        voice_list = {'ggcloud_voice_1': 'vi-VN-Wavenet-A', 'ggcloud_voice_2': 'vi-VN-Wavenet-B', 'ggcloud_voice_3': 'vi-VN-Wavenet-C', 'ggcloud_voice_4': 'vi-VN-Wavenet-D', 'ggcloud_voice_5': 'vi-VN-Standard-A', 'ggcloud_voice_6': 'vi-VN-Standard-B', 'ggcloud_voice_7':'vi-VN-Standard-C' , 'ggcloud_voice_8':'vi-VN-Standard-D'}
+        voice_list = {'Google_Voice_1': 'vi-VN-Wavenet-A', 'Google_Voice_2': 'vi-VN-Wavenet-B', 'Google_Voice_3': 'vi-VN-Wavenet-C', 'Google_Voice_4': 'vi-VN-Wavenet-D', 'Google_Voice_5': 'vi-VN-Standard-A', 'Google_Voice_6': 'vi-VN-Standard-B', 'Google_Voice_7':'vi-VN-Standard-C' , 'Google_Voice_8':'vi-VN-Standard-D'}
         voice_name = voice_list.get(voice_name)
         #HTTP Request
         url = 'https://texttospeech.googleapis.com/v1beta1/text:synthesize?key='+ api
         #Header Parameters
         headers = {'Content-type': 'application/json'}
         # Body Parameters
-        data = { "audioConfig": { "audioEncoding": "MP3", "pitch": pitch, "speakingRate": speed },  "input": { "text": text_message }, "voice": { "languageCode": languageCode, "name": voice_name  }}
-        #Get respounse from Server	
+        data = { "audioConfig": { "audioEncoding": "MP3", "pitch": pitch, "speakingRate": speed },  "input": { "text": message }, "voice": { "languageCode": languageCode, "name": voice_name }}
+		#Get respounse from Server	
         response = requests.post(url, data = json.dumps(data), headers = headers)
         # Cut audio string from response
         audio_string = response.text.split('"')
@@ -60,8 +59,8 @@ def setup(hass, config):
         # Write audio byte to file
         audio_file.write(audio_byte)
         audio_file.close()
-	
-	# Play audio file with Home Assistant Service#	
+
+    	# Play audio file with Home Assistant Service#	
         url_file = url_hass + CON_AUDIO_PATH + uniq_filename
         # service data for 'CALL SERVICE' in Home Assistant
         service_data = {'entity_id': media_id, 'media_content_id': url_file, 'media_content_type': 'audio/mp3'}
