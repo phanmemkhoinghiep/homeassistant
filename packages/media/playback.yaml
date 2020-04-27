@@ -1,0 +1,49 @@
+
+
+automation:
+  - id: 'playing_11'
+    alias: "playing_11"
+    trigger:
+      platform: template
+      value_template: "{{ states.sensor.time_date.state == as_timestamp(states.input_datetime.playing_time.state) | timestamp_custom('%H:%M, %Y-%m-%d', true) }}"
+    action:
+      service: script.start_reading      
+
+script:
+  start_playing:
+    sequence:  
+    - service: media_player.media_stop
+      data_template:
+        entity_id: >
+          {% if is_state("input_select.playing_speaker", "Loa_Google") %} media_player.van_phong
+          {% elif is_state("input_select.playing_speaker", "Phone") %} media_player.note4               
+          {% endif %} 
+    - service: media_player.volume_set
+      data_template:
+        entity_id: >
+          {% if is_state("input_select.playing_speaker", "Loa_Google") %} media_player.van_phong
+          {% elif is_state("input_select.playing_speaker", "Phone") %} media_player.note4               
+          {% endif %} 
+        volume_level: '{{ states.input_number.playing_volume.state  }}'
+
+    - service: media_extractor.play_media
+      data_template:
+        entity_id: >
+          {% if is_state("input_select.playing_speaker", "Loa_Google") %} media_player.van_phong
+          {% elif is_state("input_select.playing_speaker", "Phone") %} media_player.note4               
+          {% endif %}          
+        media_content_id: "{{ states.input_text.playing_url.state }}"
+        media_content_type: >
+          {% if is_state("input_select.playing_type", "Audio") %} "music"          
+          {% elif is_state("input_select.playing_type", "Video") %} "video"          
+          {% endif %}         
+        
+  stop_playing:
+    sequence:  
+    - service: media_player.media_stop
+      data_template:
+        entity_id: >
+          {% if is_state("input_select.playing_speaker", "Loa_Google") %} media_player.van_phong
+          {% elif is_state("input_select.playing_speaker", "Phone") %} media_player.note4               
+          {% endif %} 
+
