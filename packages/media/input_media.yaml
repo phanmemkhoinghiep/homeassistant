@@ -4,23 +4,33 @@ input_select:
     options: 
       - Loa_Google
       - Phone
-    initial: Loa_Google
+    # initial: Loa_Phong Khach
     # icon: mdi:speaker-wireless
   playing_speaker:
     # name: Speakers
     options: 
       - Loa_Google
       - Phone
-    # initial: Loa_Google
+    # initial: Loa_Phong Khach
     # icon: mdi:speaker-wireless
  
+  # reading_language:
+   # # name: Language
+   # options:
+      # - Tieng_Viet
+      # - English
+      # - Francis
+      # - Chinese
+      # - Japanese 
+      # - Korean
+
   reading_voice:
-   # name: Channel
+   # name: Voice
    options:
       - Google_Voice_1
       - Google_Voice_2
       - Google_Voice_3
-      - Google_Voice_4   
+      - Google_Voice_4 
       - Viettel_Voice_1
       - Viettel_Voice_2
       - Viettel_Voice_3
@@ -88,37 +98,37 @@ input_number:
 input_text:
 
   reading_ct_01:
-    name: Input for Content 01
-    # initial: Please type here for input
+    name: Nội dung phát 01
+    # initial: Mời nhập nội dung cần phát vào đây
     icon: mdi:report       
     max: 255
   reading_ct_02:
-    name: Input for Content 02
-    # initial: Please type here for input
+    name: Nội dung phát 02
+    # initial: Mời nhập nội dung cần phát vào đây
     icon: mdi:report       
     max: 255
     
   reading_ct_03:
-    name: Input for Content 03
-    # initial: Please type here for input
+    name: Nội dung phát 03
+    # initial: Mời nhập nội dung cần phát vào đây
     icon: mdi:report        
     max: 255
 
   reading_ct_04:
-    name: Input for Content 04
-    # initial: Please type here for input
+    name: Nội dung phát 04
+    # initial: Mời nhập nội dung cần phát vào đây
     icon: mdi:report        
     max: 255
 
   reading_ct_05:
-    name: Input for Content 05
-    # initial: Please type here for input
+    name: Nội dung phát 05
+    # initial: Mời nhập nội dung cần phát vào đây
     icon: mdi:report        
     max: 255
     
   playing_url:
-    # name: url link
-    # initial: Please type here for online link
+    # name: Địa chỉ link
+    # initial: Mời nhập nội dung cần phát vào đây
     icon: mdi:speaker-wireless        
     max: 255
 
