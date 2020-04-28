@@ -44,7 +44,7 @@ def setup(hass, config):
         # Get response from Server	
         response = requests.post(url, data = text_message, headers = header_parameters).json()['async']
         # Create unique audio file name
-        uniq_filename = 'tts_fpt' + str(datetime.datetime.now().date()) + '_' + str(datetime.datetime.now().time()).replace(':', '.') + '.mp3'
+        uniq_filename = 'tts_fpt_' + str(datetime.datetime.now().date()) + '_' + str(datetime.datetime.now().time()).replace(':', '.') + '.mp3'
         # Open audio file
         audio_file = open(CONF_FILE_PATH + uniq_filename, 'wb')
         # Write audio content to file
