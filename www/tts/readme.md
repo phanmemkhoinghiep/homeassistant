@@ -1,5 +1,5 @@
 #Hello
-#This is the folder that needs to store TTS file of all TTS custom_component
+This is step by step guide to intergrated these TTS Component to your Home Assistant
 
 ### STEP1. Download to your Home Assistant Custom_Component Folder
 
@@ -78,5 +78,5 @@ script:
         pitch: '0' #May be from your input_number
         language: "vi-VN" #May be from your input_select
         voice_name: "Google_Voice_1"' #May be from your input_select
-```sh
+```
 5. Enjoy with the TTS voice
