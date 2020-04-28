@@ -19,7 +19,7 @@ CONF_VOICE_TYPE = 'voice_type'
 CONF_FILE_PATH = '/config/www/tts/'
 CON_AUDIO_PATH = '/local/tts/'
 
-import requests, json, os, time, uuid, datetime
+import requests, json, os, time, uuid, urllib, datetime
 
 def setup(hass, config):
 
