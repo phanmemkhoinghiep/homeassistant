@@ -43,7 +43,7 @@ def setup(hass, config):
         header_parameters = {'api_key': openfpt_api, 'speed': speed_read, 'prosody': '1', 'voice': voice_type}
         text_message = text_message.encode('utf-8')
         # Get url of audio file	
-        url_mp3 = requests.post(url, data = text_message, headers = header_parameters).json()['async']
+        request = requests.post(url, data = text_message, headers = header_parameters).json()['async']
 		
         # time sleep in seconds
         time_sleep = 0.5
@@ -51,30 +51,11 @@ def setup(hass, config):
         time_wait = 20
         tcount = 0
         
-        # check status request
-        res_response = requests.get(url_mp3)
-        res_status = res_response.status_code
-        # Wait for hass request FPT Speech Synthesis to complete
-        while (res_status == 404 and tcount < time_wait):
-            time.sleep(time_sleep)
-            res_response = requests.get(url_mp3)
-            res_status = res_response.status_code
-            tcount += 1
-        # if error => msgbox_error
-        if tcount == time_wait:
-            msgbox_error = "Đã xảy ra lỗi. Vui lòng kiểm tra lại."
-            msgbox_error = msgbox_error.encode('utf-8')
-            url_error = requests.post(url, data = msgbox_error, headers = header_parameters).json()['async']
-            res_response = requests.get(url_error)
-
-        # Delete if File exist
-        # if os.path.exists(CONF_FILE_PATH):
-            # os.remove(CONF_FILE_PATH)
-
+       
         # Download audio file
         uniq_filename = 'tts_fpt_' + str(datetime.datetime.now().date()) + '_' + str(datetime.datetime.now().time()).replace(':', '.') + '.mp3'
         audio_file = open(CONF_FILE_PATH + uniq_filename, 'wb')
-        audio_file.write(res_response.content)
+        audio_file.write(response.content)
         audio_file.close()
 	
         ## Play audio file on media player ##	
