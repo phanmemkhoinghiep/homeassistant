@@ -1,0 +1,462 @@
+  temperature_button:
+    layout: vertical
+    show_name: false
+    show_state: true
+    show_label: false
+    label: Nhiệt độ
+    icon: mdi:thermometer
+    tap_action:
+      action: more-info
+    styles:
+      card:
+        - border-radius: 15%
+        - width: 83px
+        - height: 83px
+        - font-size: 12px
+      icon:
+        - color: >
+            [[[
+              if (entity.state < 20) return 'rgb(0,191,255)';
+              if (entity.state >= 20 && entity.state <25) return 'rgb(185,218,137)';
+              if (entity.state >= 20 && entity.state <30) return 'rgb(240,230,140)';
+              if (entity.state >= 30 && entity.state <35) return 'gold';
+              if (entity.state >= 35 && entity.state <40) return 'orange';
+              if (entity.state >= 40) return 'coral';
+              else return 'grey';
+            ]]]
+        - width: 45px
+        - height: 45px
+
+  humidity_button:
+    layout: vertical
+    show_name: false
+    show_state: true                
+    show_label: false
+    label: Độ ẩm
+    icon: mdi:water-percent
+    tap_action:
+      action: more-info       
+    styles:
+      card:
+        - border-radius: 15%
+        - width: 83px
+        - height: 83px
+        - font-size: 12px
+      icon:
+        - color: >
+            [[[
+              if (entity.state < 40) return 'coral';
+              if (entity.state >= 40 && entity.state <55) return 'gold';
+              if (entity.state >= 55 && entity.state <70) return 'orange';
+              if (entity.state >= 70 && entity.state <95) return 'rgb(30,255,124)';
+              if (entity.state >= 95) return 'rgb(0,0,139)';
+              else return 'grey';
+            ]]]
+        - width: 45px
+        - height: 45px
+        
+  tube_light_button:
+    layout: vertical
+    show_name: false
+    show_label: true
+    icon: >
+        [[[
+          if (entity.state =='off') return 'mdi:wall-sconce-flat';
+          if (entity.state =='on') return 'mdi:wall-sconce-flat';
+          else return 'mdi:alert-octagon-outline';
+        ]]]                  
+    styles:
+      card:
+        - border-radius: 15%
+        - width: 83px
+        - height: 83px
+        - font-size: 12px
+      icon:
+        - color: >
+            [[[
+              if (entity.state =='off') return 'rgb(176,196,222)';
+              if (entity.state =='on') return 'gold';
+              else return 'grey';
+            ]]]
+        - width: 45px
+        - height: 45px  
+
+  falling_light_button:
+    layout: vertical
+    show_name: false
+    show_label: true
+    icon: >
+        [[[
+          if (entity.state =='off') return 'mdi:ceiling-light';
+          if (entity.state =='on') return 'mdi:ceiling-light';
+          else return 'mdi:alert-octagon-outline';
+        ]]]                  
+    styles:
+      card:
+        - border-radius: 15%
+        - width: 83px
+        - height: 83px
+        - font-size: 12px
+      icon:
+        - color: >
+            [[[
+              if (entity.state =='off') return 'rgb(176,196,222)';
+              if (entity.state =='on') return 'gold';
+              else return 'grey';
+            ]]]
+        - width: 45px
+        - height: 45px  
+
+  un_used_button:
+    layout: vertical
+    show_name: false
+    show_label: true
+    icon: >
+        [[[
+          if (entity.state =='off') return 'mdi:dots-horizontal-circle-outline';
+          if (entity.state =='on') return 'mdi:dots-horizontal-circle-outline';
+          else return 'mdi:alert-octagon-outline';
+        ]]]                  
+    styles:
+      card:
+        - border-radius: 15%
+        - width: 83px
+        - height: 83px
+        - font-size: 12px
+      icon:
+        - color: >
+            [[[
+              if (entity.state =='off') return 'rgb(176,196,222)';
+              if (entity.state =='on') return 'gold';
+              else return 'grey';
+            ]]]
+        - width: 45px
+        - height: 45px     
+
+  pir_button:
+    layout: vertical
+    show_name: false
+    show_label: true
+    icon: >
+        [[[
+          if (entity.state =='off') return 'mdi:exit-run';
+          if (entity.state =='on') return 'mdi:exit-run';
+          else return 'mdi:alert-octagon-outline';
+        ]]]                  
+    tap_action:
+      action: more-info 
+    styles:
+      card:
+        - border-radius: 15%
+        - width: 83px
+        - height: 83px
+        - font-size: 12px
+      icon:
+        - color: >
+            [[[
+              if (entity.state =='off') return 'rgb(176,196,222)';
+              if (entity.state =='on') return 'gold';
+              else return 'grey';
+            ]]]
+        - width: 45px
+        - height: 45px        
+        
+  wall_light_button:        
+    layout: vertical
+    show_name: false
+    show_label: true
+    icon: >
+        [[[
+          if (entity.state =='off') return 'mdi:track-light';
+          if (entity.state =='on') return 'mdi:track-light';
+          else return 'mdi:alert-octagon-outline';
+        ]]]                  
+    styles:
+      card:
+        - border-radius: 15%
+        - width: 83px
+        - height: 83px
+        - font-size: 12px
+      icon:
+        - color: >
+            [[[
+              if (entity.state =='off') return 'rgb(176,196,222)';
+              if (entity.state =='on') return 'gold';
+              else return 'grey';
+            ]]]
+        - width: 45px
+        - height: 45px        
+        
+  steps_light_button:        
+    layout: vertical
+    show_name: false
+    show_label: true
+    icon: >
+        [[[
+          if (entity.state =='off') return 'mdi:outdoor-lamp';
+          if (entity.state =='on') return 'mdi:outdoor-lamp';
+          else return 'mdi:alert-octagon-outline';
+        ]]]                  
+    styles:
+      card:
+        - border-radius: 15%
+        - width: 83px
+        - height: 83px
+        - font-size: 12px
+      icon:
+        - color: >
+            [[[
+              if (entity.state =='off') return 'rgb(176,196,222)';
+              if (entity.state =='on') return 'gold';
+              else return 'grey';
+            ]]]
+        - width: 45px
+        - height: 45px                
+
+  door_button:         
+    show_name: false
+    show_label: true
+    icon: >
+        [[[
+          if (entity.state =='off') return 'mdi:door-closed-lock';
+          if (entity.state =='on') return 'mdi:door-open';
+          else return 'mdi:alert-octagon-outline';
+        ]]]                  
+    tap_action:
+      action: more-info
+    styles:
+      card:
+        - border-radius: 15%
+        - width: 83px
+        - height: 83px
+        - font-size: 12px
+      icon:
+        - color: >
+            [[[
+              if (entity.state =='off') return 'rgb(176,196,222)';
+              if (entity.state =='on') return 'gold';
+              else return 'grey';
+            ]]]
+        - width: 45px
+        - height: 45px  
+  fan_button:             
+    layout: vertical
+    show_name: false
+    show_label: true
+    icon: >
+        [[[
+          if (entity.state =='off') return 'mdi:fan';
+          if (entity.state =='on') return 'mdi:fan';
+          else return 'mdi:alert-octagon-outline';
+        ]]]                  
+    styles:
+      card:
+        - border-radius: 15%
+        - width: 83px
+        - height: 83px
+        - font-size: 12px
+      icon:
+        - color: >
+            [[[
+              if (entity.state =='off') return 'rgb(176,196,222)';
+              if (entity.state =='on') return 'gold';
+              else return 'grey';
+            ]]]
+        - width: 45px
+        - height: 45px                                                            
+  speaker_button: 
+    layout: vertical
+    show_name: false
+    show_label: true
+    tap_action:
+      action: more-info              
+    icon: >
+        [[[
+          if (entity.state =='off') return 'mdi:cast-off';
+          if (entity.state =='on') return 'mdi:cast-audio';
+          else return 'mdi:alert-octagon-outline';
+        ]]]                  
+    styles:
+      card:
+        - border-radius: 15%
+        - width: 83px
+        - height: 83px
+        - font-size: 12px
+      icon:
+        - color: >
+            [[[
+              if (entity.state =='off') return 'rgb(176,196,222)';
+              if (entity.state =='on') return 'gold';
+              else return 'grey';
+            ]]]
+        - width: 45px
+        - height: 45px                                     
+  kitchen_light_button:         
+    layout: vertical
+    show_name: false
+    show_label: true
+    icon: >
+        [[[
+          if (entity.state =='off') return 'mdi:vanity-light';
+          if (entity.state =='on') return 'mdi:vanity-light';
+          else return 'mdi:alert-octagon-outline';
+        ]]]                  
+    styles:
+      card:
+        - border-radius: 15%
+        - width: 83px
+        - height: 83px
+        - font-size: 12px
+      icon:
+        - color: >
+            [[[
+              if (entity.state =='off') return 'rgb(176,196,222)';
+              if (entity.state =='on') return 'gold';
+              else return 'grey';
+            ]]]
+        - width: 45px
+        - height: 45px                                   
+  timer_button:         
+    layout: vertical
+    show_name: false
+    show_state: true
+    show_label: true 
+    icon: >
+        [[[
+          if (entity.state =='idle') return 'mdi:timer-off';
+          if (entity.state =='active') return 'mdi:timer';
+          else return 'mdi:alert-octagon-outline';
+        ]]]                  
+    tap_action:
+      action: more-info 
+    styles:
+      card:
+        - border-radius: 15%
+        - width: 83px
+        - height: 83px
+        - font-size: 12px
+      icon:
+        - color: >
+            [[[
+              if (entity.state =='idle') return 'rgb(176,196,222)';
+              if (entity.state =='active') return 'gold';
+              else return 'grey';
+            ]]]
+        - width: 45px
+        - height: 45px        
+
+  tv_button: 
+    layout: vertical
+    show_name: false
+    show_label: true
+    tap_action:
+      action: more-info              
+    icon: >
+        [[[
+          if (entity.state =='off') return 'mdi:television-classic-off';
+          if (entity.state =='on') return 'mdi:television-classic';
+          else return 'mdi:alert-octagon-outline';
+        ]]]                  
+    styles:
+      card:
+        - border-radius: 15%
+        - width: 83px
+        - height: 83px
+        - font-size: 12px
+      icon:
+        - color: >
+            [[[
+              if (entity.state =='off') return 'rgb(176,196,222)';
+              if (entity.state =='on') return 'gold';
+              else return 'grey';
+            ]]]
+        - width: 45px
+        - height: 45px           
+             
+  curtain_button: 
+    layout: vertical
+    show_name: false
+    show_label: true           
+    icon: >
+        [[[
+          if (entity.state =='open') return 'mdi:window-open';
+          if (entity.state =='closed') return 'mdi:window-shutter';
+          else return 'mdi:alert-octagon-outline';
+        ]]]                  
+    styles:
+      card:
+        - border-radius: 15%
+        - width: 83px
+        - height: 83px
+        - font-size: 12px
+      icon:
+        - color: >
+            [[[
+              if (entity.state =='closed') return 'grey';
+              if (entity.state =='open') return 'gold';
+              else return 'grey';
+            ]]]
+        - width: 45px
+        - height: 45px           
+             
+
+             
+  click_button:  
+    layout: vertical
+    show_name: false
+    show_label: true
+    show_state: false
+            
+    icon: >
+        [[[
+          if (entity.state =='off') return 'mdi:gesture-tap-button';
+          if (entity.state =='on') return 'mdi:gesture-tap-button';
+          else return 'mdi:alert-octagon-outline';
+        ]]]                  
+    styles:
+      card:
+        - border-radius: 15%
+        - width: 83px
+        - height: 83px
+        - font-size: 12px
+      icon:
+        - color: >
+            [[[
+              if (entity.state =='off') return 'green';
+              if (entity.state =='on') return 'green';
+              else return 'grey';
+            ]]]
+        - width: 45px
+        - height: 45px                                   
+        
+
+  brightness_button:
+    layout: vertical
+    show_name: false
+    show_state: true                
+    show_label: false
+    label: Cường độ sáng
+    icon: mdi:brightness-6
+    tap_action:
+      action: more-info       
+    styles:
+      card:
+        - border-radius: 15%
+        - width: 83px
+        - height: 83px
+        - font-size: 12px
+      icon:
+        - color: >
+            [[[
+              if (entity.state < 200) return 'black';
+              if (entity.state >= 200 && entity.state <400) return 'rgb(64,64,64)';
+              if (entity.state >= 400 && entity.state <600) return 'rgb(96,96,96)';
+              if (entity.state >= 600 && entity.state <750) return 'rgb(128,128,128)';
+              if (entity.state >= 750 && entity.state <850) return 'rgb(192,192,192)';
+              if (entity.state >= 850 && entity.state <1050) return 'rgb(224,224,224)';
+              if (entity.state >= 1050) return 'rgb(255,255,255)';
+              else return 'grey';
+            ]]]
+        - width: 45px
+        - height: 45px
+ 
