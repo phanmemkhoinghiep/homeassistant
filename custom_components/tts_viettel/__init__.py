@@ -41,7 +41,7 @@ def setup(hass, config):
         # Header Parameters
         headers = {'Content-type': 'application/json', 'token': viettel_token}
         # Body Parameters
-	data = {'text': text_message, "voice": voice_type, "id": "2", "without_filter": False, "speed": speed_read, "tts_return_option": 3}
+        data = {'text': text_message, "voice": voice_type, "id": "2", "without_filter": False, "speed": speed_read, "tts_return_option": 3}
         # Get response from Server
         response = requests.post(url, data = json.dumps(data), headers = headers)
         # Create unique audio file name
@@ -49,9 +49,9 @@ def setup(hass, config):
         # Open audio file     
         audio_file = open(CONF_FILE_PATH + uniq_filename, 'wb')
         # Write audio content to file
-	audio_file.write(response.content)
+        audio_file.write(response.content)
         audio_file.close()
-	# Play audio file with Home Assistant Service#	
+        # Play audio file with Home Assistant Service#
         url_file = url_hass + CON_AUDIO_PATH + uniq_filename
         # service data for 'CALL SERVICE' in Home Assistant
         service_data = {'entity_id': media_id, 'media_content_id': url_file, 'media_content_type': 'audio/mp3'}
