@@ -1,7 +1,4 @@
 
-resources:
- !include lovelace/other/resources.yaml
-
 button_card_templates:
   !include lovelace/templates/button_card_template.yaml
   
