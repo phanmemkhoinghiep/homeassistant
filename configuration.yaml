@@ -6,7 +6,8 @@ lovelace:
   resources: !include lovelace/other/resources.yaml
 homeassistant:
   packages: !include_dir_named packages
-
+  external_url: "https://yourdomain.duckdns.org:8123"
+  internal_url: "http://192.168.1.123:8123"
 
 frontend:
   javascript_version: latest
