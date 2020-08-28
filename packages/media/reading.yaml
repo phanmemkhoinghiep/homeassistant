@@ -31,7 +31,8 @@ script:
         {% if is_state("input_select.reading_voice", "Google_Voice_1") and is_state("input_select.reading_speaker", "Loa_Google") %} script.gg_reading_01
         {% elif is_state("input_select.reading_voice", "Google_Voice_2") and is_state("input_select.reading_speaker", "Loa_Google") %} script.gg_reading_02         
         {% elif is_state("input_select.reading_voice", "Google_Voice_3") and is_state("input_select.reading_speaker", "Loa_Google") %} script.gg_reading_03        
-        {% elif is_state("input_select.reading_voice", "Google_Voice_4") and is_state("input_select.reading_speaker", "Loa_Google") %} script.gg_reading_04        	        {% elif is_state("input_select.reading_voice", "Viettel_Voice_1") and is_state("input_select.reading_speaker", "Loa_Google") %} script.viettel_reading_01 
+        {% elif is_state("input_select.reading_voice", "Google_Voice_4") and is_state("input_select.reading_speaker", "Loa_Google") %} script.gg_reading_04        	        
+        {% elif is_state("input_select.reading_voice", "Viettel_Voice_1") and is_state("input_select.reading_speaker", "Loa_Google") %} script.viettel_reading_01 
         {% elif is_state("input_select.reading_voice", "Viettel_Voice_2") and is_state("input_select.reading_speaker", "Loa_Google") %} script.viettel_reading_02  
         {% elif is_state("input_select.reading_voice", "Viettel_Voice_3") and is_state("input_select.reading_speaker", "Loa_Google") %} script.viettel_reading_03
         {% elif is_state("input_select.reading_voice", "Viettel_Voice_4") and is_state("input_select.reading_speaker", "Loa_Google") %} script.viettel_reading_04        
