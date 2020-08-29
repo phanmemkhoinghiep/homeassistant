@@ -18,8 +18,7 @@ def setup(hass, config):
 
     def tts_handler(data_call):
         # Get config
-        openfpt_api = str(config[DOMAIN][CONF_API_KEY])        
-        url_hass = str(config[DOMAIN][CONF_URL_HASS])        
+        fpt_api = str(config[DOMAIN][CONF_API_KEY])                
         # Get data service
         media_id = data_call.data.get(CONF_PLAYER_ID)
         text_message = str(data_call.data.get(CONF_MESSAGE)[0:2000])
@@ -31,7 +30,7 @@ def setup(hass, config):
         # HTTP Request
         url = 'https://api.fpt.ai/hmi/tts/v5'
         # Header Parameters
-        header_parameters = {'api_key': openfpt_api, 'speed': speed_read, 'prosody': '1', 'voice': voice_type}
+        header_parameters = {'api_key': fpt_api, 'speed': speed_read, 'voice': voice_type}
         # Body Parameters
         text_message = text_message.encode('utf-8')
         # Get response from Server
