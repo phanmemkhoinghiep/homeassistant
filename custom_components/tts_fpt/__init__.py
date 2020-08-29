@@ -24,15 +24,14 @@ def setup(hass, config):
     def tts_handler(data_call):
         # Get config
         openfpt_api = str(config[DOMAIN][CONF_API_KEY])        
-        url_hass = str(config[DOMAIN][CONF_URL_HASS])
-        
+        url_hass = str(config[DOMAIN][CONF_URL_HASS])        
         # Get data service
         media_id = data_call.data.get(CONF_PLAYER_ID)
         text_message = str(data_call.data.get(CONF_MESSAGE)[0:2000])
         voice_type = data_call.data.get(CONF_VOICE_TYPE)
         speed_read = data_call.data.get(CONF_SPEED)
         # List voice of FPT Speech Synthesis
-        voice_list = {'nam_mien_bac': 'leminh', 'nu_mien_bac': 'banmai', 'nu_mien_trung': 'myan', 'nu_mien_nam': 'lannhi'}
+        voice_list = {'nam_mien_bac_01': 'leminh', 'nu_mien_bac_01': 'banmai','nu_mien_bac_02': 'thuminh', 'nam_mien_trung_01': 'gia_huy','nu_mien_trung_01': 'myan', 'nu_mien_nam_01': 'lannhi','nu_mien_nam_02': 'linhsan'}
         voice_type = voice_list.get(voice_type)
         # HTTP Request
         url = 'https://api.fpt.ai/hmi/tts/v5'
@@ -44,11 +43,9 @@ def setup(hass, config):
         response = requests.post(url, data = text_message, headers = header_parameters).json()['async']
         # Create unique audio file name
         uniq_filename = 'tts_fpt' + str(datetime.datetime.now().date()) + '_' + str(datetime.datetime.now().time()).replace(':', '.') + '.mp3'
-        # Open audio file
-        audio_file = open(CONF_FILE_PATH + uniq_filename, 'wb')
-        # Write audio content to file
-        audio_file.write(response)
-        audio_file.close()
+        # Write audio content from link to unique audio file name        
+        file_path = CONF_FILE_PATH + uniq_filename
+        urllib.request.urlretrieve(response, file_path)
         # Play audio file with Home Assistant Service#
         url_file = url_hass + CON_AUDIO_PATH + uniq_filename
         # service data for 'CALL SERVICE' in Home Assistant
