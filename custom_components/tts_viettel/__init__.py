@@ -18,7 +18,7 @@ CONF_VOICE_TYPE = 'voice_type'
 CONF_FILE_PATH = '/config/www/tts/'
 CON_AUDIO_PATH = '/local/tts/'
 
-import requests, json, os, time, uuid, urllib, datetime
+import requests, json, os, time, urllib, datetime
 
 def setup(hass, config):
 
@@ -34,7 +34,7 @@ def setup(hass, config):
         voice_type = data_call.data.get(CONF_VOICE_TYPE)
         speed_read = data_call.data.get(CONF_SPEED)
         # List voice of Viettel Speech Synthesis
-        voice_list = {'nu_mien_bac_1': 'hn-quynhanh', 'nu_mien_bac_2': 'trinhthiviettrinh', 'nam_mien_bac_1': 'hn-thanhtung', 'nam_mien_bac_2': 'phamtienquan', 'nu_mien_trung_1': 'hue-maingoc', 'nam_mien_trung_1': 'hue-baoquoc', 'nu_mien_nam_1': 'hcm-diemmy', 'nu_mien_nam_2': 'lethiyen', 'nu_mien_nam_3': 'nguyenthithuyduyen', 'nam_mien_nam_1': 'hcm-minhquan'}
+        voice_list = {'nu_mien_bac_01': 'hn-quynhanh', 'nu_mien_bac_02': 'trinhthiviettrinh', 'nam_mien_bac_01': 'hn-thanhtung', 'nam_mien_bac_02': 'phamtienquan', 'nu_mien_trung_01': 'hue-maingoc', 'nam_mien_trung_01': 'hue-baoquoc', 'nu_mien_nam_01': 'hcm-diemmy', 'nu_mien_nam_02': 'lethiyen', 'nu_mien_nam_03': 'nguyenthithuyduyen', 'nam_mien_nam_01': 'hcm-minhquan'}
         voice_type = voice_list.get(voice_type)
         # HTTP Request
         url = 'https://viettelgroup.ai/voice/api/tts/v1/rest/syn'
@@ -43,7 +43,8 @@ def setup(hass, config):
         # Body Parameters
         data = {'text': text_message, "voice": voice_type, "id": "2", "without_filter": False, "speed": speed_read, "tts_return_option": 3}
         # Get response from Server
-        response = requests.post(url, data = json.dumps(data), headers = headers)
+#       response = requests.post(url, data = json.dumps(data), headers = headers)
+        response = requests.post(url, data=json.dumps(data), headers=headers, verify=False)
         # Create unique audio file name
         uniq_filename = 'tts_viettel_' + str(datetime.datetime.now().date()) + '_' + str(datetime.datetime.now().time()).replace(':', '.') + '.mp3'
         # Open audio file     
