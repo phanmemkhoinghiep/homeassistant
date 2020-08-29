@@ -7,15 +7,10 @@ SERVICE_FPT_TTS = 'say'
 # config
 CONF_API_KEY = 'api_key'
 CONF_SPEED = 'speed'
-CONF_URL_HASS = 'url'
 # data service
 CONF_PLAYER_ID = 'entity_id'
 CONF_MESSAGE = 'message'
 CONF_VOICE_TYPE = 'voice_type'
-
-# audio file
-CONF_FILE_PATH = '/config/www/tts'
-CON_AUDIO_PATH = '/local/tts'
 
 import requests, json, os, time, uuid, urllib, datetime
 
@@ -40,18 +35,13 @@ def setup(hass, config):
         # Body Parameters
         text_message = text_message.encode('utf-8')
         # Get response from Server
-        response = requests.post(url, data = text_message, headers = header_parameters).json()['async']
-        # Create unique audio file name
-        uniq_filename = 'tts_fpt' + str(datetime.datetime.now().date()) + '_' + str(datetime.datetime.now().time()).replace(':', '.') + '.mp3'
-        # Write audio content from link to unique audio file name        
-        file_path = CONF_FILE_PATH + uniq_filename
-        urllib.request.urlretrieve(response, file_path)
-        # Play audio file with Home Assistant Service#
-        url_file = url_hass + CON_AUDIO_PATH + uniq_filename
+        url_file = requests.post(url, data = text_message, headers = header_parameters).json()['async']
+        # "The content will be returned after a few seconds under the async link, wait some seconds"
+        time.sleep(2)
         # service data for 'CALL SERVICE' in Home Assistant
         service_data = {'entity_id': media_id, 'media_content_id': url_file, 'media_content_type': 'audio/mp3'}
         # Call service from Home Assistant
-        hass.services.call('media_player', 'play_media', service_data)
+        hass.services.call('media_extractor', 'play_media', service_data)
         
     hass.services.register(DOMAIN, SERVICE_FPT_TTS, tts_handler)
     return True
