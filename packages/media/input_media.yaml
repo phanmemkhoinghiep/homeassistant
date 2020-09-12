@@ -14,34 +14,34 @@ input_select:
     # initial: Loa_Phong Khach
     # icon: mdi:speaker-wireless
  
-  # reading_language:
-   # # name: Language
-   # options:
-      # - Tieng_Viet
-      # - English
-      # - Francis
-      # - Chinese
-      # - Japanese 
-      # - Korean
-
   reading_voice:
-   # name: Voice
-   options:
+   # name: Channel
+    options:
       - Google_Voice_1
       - Google_Voice_2
-      - Google_Voice_3
-      - Google_Voice_4 
+      - Google_Voice_3      
+      - Google_Voice_4      
       - Viettel_Voice_1
       - Viettel_Voice_2
       - Viettel_Voice_3
       - Viettel_Voice_4
+      - Viettel_Voice_5
+      - Viettel_Voice_6
+      - Viettel_Voice_7      
+      - Viettel_Voice_7      
+      - Viettel_Voice_8      
+      - Viettel_Voice_9            
+      - Viettel_Voice_10                  
       - FPT_Voice_1
       - FPT_Voice_2
       - FPT_Voice_3
       - FPT_Voice_4  
+      - FPT_Voice_5
+      - FPT_Voice_6
+      - FPT_Voice_7              
   playing_type:
    # name: Channel
-   options:
+    options:
       - Audio
       - Video
       
