@@ -4,14 +4,10 @@
 #                                                   #
 ####################################################
 
-#Feedreader for auto reading from RSS Feed
-feedreader:
-  urls:
-  - https://dantri.com.vn/trangchu.rss 
-   
-  scan_interval:
-    minutes: 60
-  max_entries: 100
+sensor:
+  platform: feedparser
+  name: Tin tức RSS
+  feed_url: 'https://vnexpress.net/rss/tin-moi-nhat.rss'
 
 # Text to speech Custom Component
 
