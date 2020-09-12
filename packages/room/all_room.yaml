@@ -1,0 +1,104 @@
+####################################################
+#                                                  #
+#              All Room                            #
+#                                                  #
+####################################################  
+
+
+automation:
+    
+
+
+  - id: 'thong_bao_tin_tuc_cap_nhat'
+    alias: "thong_bao_tin_tuc_cap_nhat"
+    trigger:
+      platform: event
+      event_type: feedreader
+    condition:
+      condition: and
+      conditions:
+        - condition: time
+          after: '13:30'
+          before: '12:00'
+    action:
+    # - service: script.news_update
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.vali_demo
+        volume_level: '0.5'
+    - service: tts_viettel.say      
+      data_template:
+        message: "Có tin mới buổi {{ states('sensor.sys_buoi') }} lúc {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p, %d/%m/%Y', true) }} với tựa đề {{ trigger.event.data.title }} và nội dung: {{ trigger.event.data.summary }} " 
+        entity_id: media_player.vali_demo
+        speed: '1'
+        voice_type: '{{["nu_mien_bac_01" , "nu_mien_bac_02" , "nam_mien_bac_01" , "nam_mien_bac_02" , "nu_mien_trung_01", "nam_mien_trung_01" , "nu_mien_nam_01" , "nu_mien_nam_02" , "nu_mien_nam_03" , "nam_mien_nam_01"] |random }} '  
+       
+
+  - id: 'speak_corona_update'
+    alias: "speak_corona_update"
+    trigger:
+      platform: state
+      entity_id: 
+      - sensor.worldwide_coronavirus_confirmed      
+      - sensor.vietnam_coronavirus_confirmed            
+    condition:
+      condition: and
+      conditions:
+        - condition: time
+          after: '13:30'
+          before: '12:00'
+        - condition: template
+          value_template: "{{ trigger.to_state.state != trigger.from_state.state }}"      
+    action:
+      service: script.corona_speak
+
+  - id: thong_bao_moi_truong_ngoai_troi_thay_doi
+    alias: 'thong_bao_moi_truong_ngoai_troi_thay_doi'    
+    trigger:
+      platform: state 
+      entity_id:      
+      - sensor.out_weather_forecast
+      - sensor.out_weather_temperature
+      - sensor.out_weather_wind_speed
+      - sensor.out_weather_pressure      
+    condition:
+      condition: and
+      conditions:
+        - condition: time
+          after: '13:30'
+          before: '12:00'
+        - condition: template
+          value_template: "{{ trigger.to_state.state != trigger.from_state.state }}"      
+    action:
+     service: script.check_enviroment_outdoor_change
+        
+script:
+
+  corona_speak:
+    sequence:
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.vali_demo
+        volume_level: '0.4'
+        
+    - service: tts_viettel.say      
+      data_template:
+        message: "Cập nhật thông tin về dịch Cô vít 19, số ca nhiễm thế giới là {{states('sensor.worldwide_coronavirus_confirmed')}} ca, Việt Nam là {{states('sensor.vietnam_coronavirus_confirmed')}} ca, số ca nhiễm hôm nay là {{states.sensor.worldwide_coronavirus_current.state}} ca, Mỹ là {{states('sensor.us_coronavirus_current')}} ca, Việt Nam là {{states('sensor.vietnam_coronavirus_current')}} ca, số ca tử vong là {{states.sensor.worldwide_coronavirus_deaths.state}} ca, Mỹ là {{states('sensor.us_coronavirus_deaths')}} ca, Việt Nam là {{states('sensor.vietnam_coronavirus_deaths')}} ca, số ca chữa khỏi là {{states.sensor.worldwide_coronavirus_recovered.state}} ca, Mỹ là {{states('sensor.us_coronavirus_recovered')}} ca, Việt Nam là {{states('sensor.vietnam_coronavirus_recovered')}} ca"
+        entity_id: media_player.vali_demo
+        speed: '1'
+        language: "vi-VN"        
+        voice_type: '{{["nu_mien_bac_01" , "nu_mien_bac_02" , "nam_mien_bac_01" , "nam_mien_bac_02" , "nu_mien_trung_01", "nam_mien_trung_01" , "nu_mien_nam_01" , "nu_mien_nam_02" , "nu_mien_nam_03" , "nam_mien_nam_01"] |random }} '  
+
+
+  check_enviroment_outdoor_change:
+    sequence:
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.vali_demo
+        volume_level: '0.4'
+    - service: tts_viettel.say      
+      data_template:
+        message: "Môi trường ngoài trời đã thay đổi, hiện tại thời tiết là {{states('sensor.out_weather_forecast')}}, nhiệt độ là {{states('sensor.out_weather_temperature')}} độ xê, tốc độ gió là {{states('sensor.out_weather_wind_speed')}} mét trên giây, áp suất không khí là {{states('sensor.out_weather_pressure')}} mbar"   
+        entity_id: media_player.vali_demo
+        speed: '1'
+        voice_type: '{{["nu_mien_bac_01" , "nu_mien_bac_02" , "nam_mien_bac_01" , "nam_mien_bac_02" , "nu_mien_trung_01", "nam_mien_trung_01" , "nu_mien_nam_01" , "nu_mien_nam_02" , "nu_mien_nam_03" , "nam_mien_nam_01"] |random }} '  
