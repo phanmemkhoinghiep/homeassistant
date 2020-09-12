@@ -3,7 +3,33 @@ icon: mdi:speaker
 path: speak 
 panel: false # this renders the first card on full width, other cards in this view will not be rendered
 cards:               
-
+  # - type: custom:vertical-style-card
+    # title: Thông tin đầu vào
+    # style:
+      # font_size: 16px
+      # border: true
+      # background_color: var(--secondary-background-color)
+    # cards:
+      # - type: horizontal-stack
+        # cards: 
+          # - type: picture-elements    
+                  # # image: /local/clock_bg_263137.png
+                  # elements:      
+                    # - type: state-label
+                      # entity: sensor.time
+                      # style:
+                        # top: 35%
+                        # left: 50%
+                        # font-size: 5vw
+                        # color: white
+        
+                    # - type: state-label
+                      # entity: sensor.date
+                      # style:
+                        # top: 70%
+                        # left: 50%
+                        # font-size: 2vw
+                        # color: white
   - type: custom:vertical-style-card
     title: Thông tin đầu vào
     style:
@@ -21,10 +47,6 @@ cards:
               name: Chọn Loa              
             - entity: input_number.reading_volume
               name: Âm lượng              
-            - entity: input_number.reading_google_pitch
-              name: Pitch Google                 
-            - entity: input_number.reading_google_speed
-              name: Tốc độ đọc Google                 
             - entity: input_number.reading_viettel_speed
               name: Tốc độ đọc Viettel                 
             - entity: input_number.reading_fpt_speed
@@ -197,7 +219,7 @@ cards:
       - type: horizontal-stack
         cards: 
           - type: media-control        
-            entity: media_player.van_phong           
+            entity: media_player.vali_demo           
             name: Loa Google 
       - type: horizontal-stack
         cards:             
