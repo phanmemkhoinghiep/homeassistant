@@ -40,7 +40,7 @@ automation:
     - service: tts_viettel.say
       data_template:
         message: "Có tin mới buổi {{ states('sensor.sys_buoi') }} lúc {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p, %d/%m/%Y', true) }} với tựa đề {{ trigger.event.data.title }} 
-        và nội dung {{ trigger.event.data.description }}"                
+        và nội dung {{ trigger.event.data.summary }}"                
         entity_id: media_player.van_phong        
         voice_type: '{{["nu_mien_bac_1" , "nu_mien_bac_2" , "nu_mien_trung_1" , "nu_mien_nam_1" , "nu_mien_nam_2" , "nu_mien_nam_3", "nam_mien_bac_1", "nam_mien_bac_2", "nam_mien_trung_1", "nam_mien_nam_1" ] |random }} '
         speed: '1'  
