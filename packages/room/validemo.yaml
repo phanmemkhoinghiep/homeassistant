@@ -12,7 +12,7 @@ binary_sensor:
   - platform: hikvision
     host: 192.168.1.3
     username: admin
-    password: 79861719@hiK
+    password: 123456
     name: wf_cam
 
 ### Camera ###
@@ -21,7 +21,7 @@ camera:
 
   - platform: ffmpeg
     name: wf_cam
-    input: rtsp://admin:79861719@hiK@192.168.1.3:554     
+    input: rtsp://admin:123456@192.168.1.3:554     
 
   
 
@@ -109,12 +109,12 @@ light:
   # - platform: hikvision
     # host: 192.168.1.15
     # username: admin
-    # password: 79861719@hiK
-    # name: wf_cam_111
+    # password: 123456
+    # name: wf_cam
 
   # # - platform: ffmpeg_motion
-    # # input: "rtsp://admin:79861719@hiK@192.168.1.15:554/Streaming/channels/102"
-    # # name: wf_cam_111
+    # # input: "rtsp://admin:123456K@192.168.1.15:554/Streaming/channels/102"
+    # # name: wf_cam
     
 # ### Switch ###  
   
@@ -123,8 +123,8 @@ light:
   # # - platform: hikvisioncam
     # # host: 192.168.1.15
     # # username: admin
-    # # password: 79861719@hiK
-    # # name: sw_wf_cam_111
+    # # password: 123456
+    # # name: sw_wf_cam
     
   # - platform: mqtt   
     # name: "112.3"
@@ -137,21 +137,7 @@ light:
     # payload_not_available: "Offline"
     # retain: false  
     
-# ### Camera ###
 
-# camera:
-
-  # - platform: ffmpeg
-    # input: "rtsp://admin:79861719@hiK@192.168.1.15:554/Streaming/channels/102"
-    # name: wf_cam_111
-
-  # - platform: generic
-    # still_image_url: "http://192.168.1.15/ISAPI/Streaming/channels/102/picture"
-    # stream_source: "rtsp://admin:79861719@hiK@192.168.1.15:554/Streaming/channels/102"
-    # username: admin
-    # password: 79861718@hiK
-    # authentication: basic
-    # name: wf_cam_111
 
 sensor:
 
