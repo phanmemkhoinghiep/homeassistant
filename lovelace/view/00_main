@@ -294,5 +294,3 @@ cards:
         - type: markdown        
           content: >
            {{states.sensor.tin_tuc_rss.attributes.entries}}
-
-
