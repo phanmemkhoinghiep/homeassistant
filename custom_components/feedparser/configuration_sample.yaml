@@ -21,7 +21,7 @@ sensor:
           after: '13:30'
           before: '12:00'
         - condition: template
-          value_template: "{{ trigger.to_state.state != trigger.from_state.state }}"      
+          value_template: "{{ trigger.to_state.attributes.entries != trigger.from_state.attributes.entries }}"      
     action:
       service: script.doc_tin    
       
