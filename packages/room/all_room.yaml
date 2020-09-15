@@ -7,20 +7,15 @@
 
 automation:
     
+   
   - id: 'thong_bao_tin_tuc_cap_nhat_1'
     alias: "thong_bao_tin_tuc_cap_nhat_1"
     trigger:
       platform: state
-      entity_id: 
-      - sensor.rss_news_1      
+      entity_id: sensor.spk_rss_1
     condition:
-      condition: and
-      conditions:
-        - condition: time
-          after: '13:30'
-          before: '12:00'
-        - condition: template
-          value_template: "{{ trigger.to_state.state != trigger.from_state.state }}"   
+      - condition: template
+        value_template: "{{ trigger.to_state.state != trigger.from_state.state }}"                  
     action:
       service: script.doc_tin_1    
 
@@ -28,16 +23,10 @@ automation:
     alias: "thong_bao_tin_tuc_cap_nhat_2"
     trigger:
       platform: state
-      entity_id: 
-      - sensor.rss_news_2      
-    condition:
-      condition: and
-      conditions:
-        - condition: time
-          after: '13:30'
-          before: '12:00'
-        - condition: template
-          value_template: "{{ trigger.to_state.state != trigger.from_state.state }}"   
+      entity_id: sensor.spk_rss_2
+    condition:      
+      - condition: template
+        value_template: "{{ trigger.to_state.state != trigger.from_state.state }}"                  
     action:
       service: script.doc_tin_2    
 
@@ -45,18 +34,13 @@ automation:
     alias: "thong_bao_tin_tuc_cap_nhat_3"
     trigger:
       platform: state
-      entity_id: 
-      - sensor.rss_news_3      
-    condition:
-      condition: and
-      conditions:
-        - condition: time
-          after: '13:30'
-          before: '12:00'
-        - condition: template
-          value_template: "{{ trigger.to_state.state != trigger.from_state.state }}"      
+      entity_id: sensor.spk_rss_3
+    condition:      
+      - condition: template
+        value_template: "{{ trigger.to_state.state != trigger.from_state.state }}"            
     action:
-      service: script.doc_tin_3    
+      service: script.doc_tin_3     
+      
       
   - id: 'speak_corona_update'
     alias: "speak_corona_update"
