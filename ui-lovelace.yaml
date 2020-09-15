@@ -1,17 +1,21 @@
 
+
 button_card_templates:
   !include lovelace/templates/button_card_template.yaml
   
-title: My Test
+title: Vali Demo
 background:  var(--background-image)
   
 views: 
 
-  # - !include lovelace/views/00_main.yaml
-  # - !include lovelace/views/01_test_room.yaml  
+  - !include lovelace/views/00_news.yaml
+  - !include lovelace/views/00_main.yaml
+# - !include lovelace/views/01_room.yaml
+  - !include lovelace/views/01_vali.yaml    
   - !include lovelace/views/02_speak.yaml
   - !include lovelace/views/03_playback.yaml  
-  # - !include lovelace/views/04_network.yaml
-  # - !include lovelace/views/05_system.yaml   
-  # - !include lovelace/views/06_device.yaml
-  # - !include lovelace/views/07_zigbee_network.yaml
+  # - !include lovelace/views/07_device.yaml
+  - !include lovelace/views/04_network.yaml
+  - !include lovelace/views/05_system.yaml   
+  # - !include lovelace/views/10_zigbee_network.yaml
+
