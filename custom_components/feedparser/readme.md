@@ -178,15 +178,14 @@ cards:
         - type: markdown        
           title: VnExpress
           content: >
-           {{ states.sensor.all_news_1.attributes.entries|replace("[", "")|replace("]", "")|replace("{", "")|replace("}", "")|replace("title", "Tiêu đề")|replace("summary", "Nội dung") }}
+           {{ states.sensor.rss_news_1.attributes.entries|replace("[", "")|replace("]", "")|replace("{", "")|replace("}", "")|replace("title", "Tiêu đề")|replace("summary", "Nội dung") }}
         - type: markdown        
           title: Thanh Niên
           content: >
-           {{ states.sensor.all_news_2.attributes.entries|replace("[", "")|replace("]", "")|replace("{", "")|replace("}", "")|replace("title", "Tiêu đề")|replace("summary", "Nội dung") }}
+           {{ states.sensor.rss_news_2.attributes.entries|replace("[", "")|replace("]", "")|replace("{", "")|replace("}", "")|replace("title", "Tiêu đề")|replace("summary", "Nội dung") }}
         - type: markdown        
           title: Forbes
           content: >
-           {{ states.sensor.all_news_3.attributes.entries|replace("[", "")|replace("]", "")|replace("{", "")|replace("}", "")|replace("title", "Tiêu đề")|replace("summary", "Nội dung") }}
-           
+           {{ states.sensor.rss_news_3.attributes.entries|replace("[", "")|replace("]", "")|replace("{", "")|replace("}", "")|replace("title", "Tiêu đề")|replace("summary", "Nội dung") }}           
 ```            
 ### STEP4. Restart Home Assistant
