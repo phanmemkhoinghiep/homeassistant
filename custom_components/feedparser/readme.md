@@ -58,7 +58,31 @@ sensor:
       - pubDate  
       - language  
 ```
-2. Configure Automation
+
+2. Assigned the auto annoucement sensor
+
+```sh  
+sensor:
+  - platform: template
+    sensors:
+      spk_rss_1:
+        value_template: "{{ states.sensor.rss_news_1.attributes.entries[0].title }}" 
+        entity_id: sensor.rss_news_1
+
+  - platform: template
+    sensors:
+      spk_rss_2:
+        value_template: "{{ states.sensor.rss_news_2.attributes.entries[0].title }}" 
+        entity_id: sensor.rss_news_2
+
+  - platform: template
+    sensors:
+      spk_rss_3:
+        value_template: "{{ states.sensor.rss_news_3.attributes.entries[0].title }}"  
+        entity_id: sensor.rss_news_3
+
+```
+3. Configure Automation
 ```sh      
 automation:
     
@@ -66,16 +90,10 @@ automation:
     alias: "thong_bao_tin_tuc_cap_nhat_1"
     trigger:
       platform: state
-      entity_id: 
-      - sensor.rss_news_1      
+      entity_id: sensor.spk_rss_1
     condition:
-      condition: and
-      conditions:
-        - condition: time
-          after: '13:30'
-          before: '12:00'
-        - condition: template
-          value_template: "{{ trigger.to_state.state != trigger.from_state.state }}"   
+      - condition: template
+        value_template: "{{ trigger.to_state.state != trigger.from_state.state }}"                  
     action:
       service: script.doc_tin_1    
 
@@ -83,16 +101,10 @@ automation:
     alias: "thong_bao_tin_tuc_cap_nhat_2"
     trigger:
       platform: state
-      entity_id: 
-      - sensor.rss_news_2      
-    condition:
-      condition: and
-      conditions:
-        - condition: time
-          after: '13:30'
-          before: '12:00'
-        - condition: template
-          value_template: "{{ trigger.to_state.state != trigger.from_state.state }}"   
+      entity_id: sensor.spk_rss_2
+    condition:      
+      - condition: template
+        value_template: "{{ trigger.to_state.state != trigger.from_state.state }}"                  
     action:
       service: script.doc_tin_2    
 
@@ -100,20 +112,14 @@ automation:
     alias: "thong_bao_tin_tuc_cap_nhat_3"
     trigger:
       platform: state
-      entity_id: 
-      - sensor.rss_news_3      
-    condition:
-      condition: and
-      conditions:
-        - condition: time
-          after: '13:30'
-          before: '12:00'
-        - condition: template
-          value_template: "{{ trigger.to_state.state != trigger.from_state.state }}"      
+      entity_id: sensor.spk_rss_3
+    condition:      
+      - condition: template
+        value_template: "{{ trigger.to_state.state != trigger.from_state.state }}"            
     action:
       service: script.doc_tin_3    
 ```
-2. Configure Script
+4. Configure Script
 
 ```sh      
 script:
@@ -158,7 +164,7 @@ script:
         voice_type: '{{["nu_mien_bac_01" , "nu_mien_bac_02" , "nam_mien_bac_01" , "nam_mien_bac_02" , "nu_mien_trung_01", "nam_mien_trung_01" , "nu_mien_nam_01" , "nu_mien_nam_02" , "nu_mien_nam_03" , "nam_mien_nam_01"] |random }} '        
 
 ```      
-3. Configure Lovelace View
+5. Configure Lovelace View
 
 ```sh
 title: Tin tức cập nhật
