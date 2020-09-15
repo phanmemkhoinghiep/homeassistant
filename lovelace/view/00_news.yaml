@@ -1,0 +1,26 @@
+title: Tin tức cập nhật
+icon: mdi:rss
+path: news 
+panel: false # this renders the first card on full width, other cards in this view will not be rendered
+cards: 
+  - type: custom:vertical-style-card
+    title: Tin tức cập nhật
+    style:
+      font_size: 16px
+      border: true
+      background_color: var(--secondary-background-color)
+    cards:
+      - type: horizontal-stack
+        cards:
+        - type: markdown        
+          title: VnExpress
+          content: >
+           {{ states.sensor.all_news_1.attributes.entries|replace("[", "")|replace("]", "")|replace("{", "")|replace("}", "")|replace("title", "Tiêu đề")|replace("summary", "Nội dung") }}
+        - type: markdown        
+          title: Thanh Niên
+          content: >
+           {{ states.sensor.all_news_2.attributes.entries|replace("[", "")|replace("]", "")|replace("{", "")|replace("}", "")|replace("title", "Tiêu đề")|replace("summary", "Nội dung") }}
+        - type: markdown        
+          title: Forbes
+          content: >
+           {{ states.sensor.all_news_3.attributes.entries|replace("[", "")|replace("]", "")|replace("{", "")|replace("}", "")|replace("title", "Tiêu đề")|replace("summary", "Nội dung") }}
