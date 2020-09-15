@@ -6,6 +6,23 @@
 
 #Feedreader Sensor
 sensor:
+  - platform: template
+    sensors:
+      spk_rss_1:
+        value_template: "{{ states.sensor.rss_news_1.attributes.entries[0].title }}" 
+        entity_id: sensor.rss_news_1
+
+  - platform: template
+    sensors:
+      spk_rss_2:
+        value_template: "{{ states.sensor.rss_news_2.attributes.entries[0].title }}" 
+        entity_id: sensor.rss_news_2
+
+  - platform: template
+    sensors:
+      spk_rss_3:
+        value_template: "{{ states.sensor.rss_news_3.attributes.entries[0].title }}"  
+        entity_id: sensor.rss_news_3
   - platform: feedparser
     name: RSS News 1
     feed_url: 'https://vnexpress.net/rss/tin-moi-nhat.rss'
@@ -49,6 +66,27 @@ sensor:
       - language
       - pubDate  
       - language  
+
+
+  - platform: template
+    sensors:
+      spk_rss_1:
+        value_template: "{{ states.sensor.rss_news_1.attributes.entries[0].title }}" 
+        entity_id: sensor.rss_news_1
+
+  - platform: template
+    sensors:
+      spk_rss_2:
+        value_template: "{{ states.sensor.rss_news_2.attributes.entries[0].title }}" 
+        entity_id: sensor.rss_news_2
+
+  - platform: template
+    sensors:
+      spk_rss_3:
+        value_template: "{{ states.sensor.rss_news_3.attributes.entries[0].title }}"  
+        entity_id: sensor.rss_news_3
+
+      
 # Text to speech Custom Component
 
 #TTS of Vietnamese FPT TTS
