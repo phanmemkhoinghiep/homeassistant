@@ -4,11 +4,51 @@
 #                                                   #
 ####################################################
 
+#Feedreader Sensor
 sensor:
-  platform: feedparser
-  name: Tin tức RSS
-  feed_url: 'https://vnexpress.net/rss/tin-moi-nhat.rss'
+  - platform: feedparser
+    name: RSS News 1
+    feed_url: 'https://vnexpress.net/rss/tin-moi-nhat.rss'
+    date_format: '%a, %b %d %I:%M %p'
+    inclusions:
+      - title
+      - summary    
+    exclusions:
+      - link
+      - description
+      - image
+      - language
+      - pubDate  
+      - language  
 
+  - platform: feedparser
+    name: RSS News 2
+    feed_url: 'https://thanhnien.vn/rss/home.rss'
+    date_format: '%a, %b %d %I:%M %p'
+    inclusions:
+      - title
+      - summary    
+    exclusions:
+      - link
+      - description
+      - image
+      - language
+      - pubDate  
+      - language  
+  - platform: feedparser
+    name: RSS News 3
+    feed_url: 'https://forbesvietnam.com.vn/rss/home.rss'
+    date_format: '%a, %b %d %I:%M %p'
+    inclusions:
+      - title
+      - summary    
+    exclusions:
+      - link
+      - description
+      - image
+      - language
+      - pubDate  
+      - language  
 # Text to speech Custom Component
 
 #TTS of Vietnamese FPT TTS
