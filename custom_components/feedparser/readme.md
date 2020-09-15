@@ -126,7 +126,7 @@ script:
         volume_level: '0.5'
     - service: tts_viettel.say      
       data_template:
-        message: "Có tin mới cập nhật buổi {{ states('sensor.sys_buoi') }} lúc {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p, %d/%m/%Y', true) }} tựa đề {{ states.sensor.rss_news_1.attributes.entries[0].title }} và nội dung: {{ states.sensor.all_news_1.attributes.entries[0].summary|striptags }} "
+        message: "Có tin mới cập nhật buổi {{ states('sensor.sys_buoi') }} lúc {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p, %d/%m/%Y', true) }} tựa đề {{ states.sensor.rss_news_1.attributes.entries[0].title }} và nội dung: {{ states.sensor.rss_news_1.attributes.entries[0].summary|striptags }} "
         entity_id: media_player.vali_demo
         speed: '1'
         voice_type: '{{["nu_mien_bac_01" , "nu_mien_bac_02" , "nam_mien_bac_01" , "nam_mien_bac_02" , "nu_mien_trung_01", "nam_mien_trung_01" , "nu_mien_nam_01" , "nu_mien_nam_02" , "nu_mien_nam_03" , "nam_mien_nam_01"] |random }} '  
@@ -139,7 +139,7 @@ script:
         volume_level: '0.5'
     - service: tts_viettel.say      
       data_template:
-        message: "Có tin mới cập nhật buổi {{ states('sensor.sys_buoi') }} lúc {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p, %d/%m/%Y', true) }} tựa đề {{ states.sensor.rss_news_2.attributes.entries[0].title }} và nội dung: {{ states.sensor.all_news_1.attributes.entries[0].summary|striptags }} "
+        message: "Có tin mới cập nhật buổi {{ states('sensor.sys_buoi') }} lúc {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p, %d/%m/%Y', true) }} tựa đề {{ states.sensor.rss_news_2.attributes.entries[0].title }} và nội dung: {{ states.sensor.rss_news_2.attributes.entries[0].summary|striptags }} "
         entity_id: media_player.vali_demo
         speed: '1'
         voice_type: '{{["nu_mien_bac_01" , "nu_mien_bac_02" , "nam_mien_bac_01" , "nam_mien_bac_02" , "nu_mien_trung_01", "nam_mien_trung_01" , "nu_mien_nam_01" , "nu_mien_nam_02" , "nu_mien_nam_03" , "nam_mien_nam_01"] |random }} '  
@@ -152,7 +152,7 @@ script:
         volume_level: '0.5'
     - service: tts_viettel.say      
       data_template:
-        message: "Có tin mới cập nhật buổi {{ states('sensor.sys_buoi') }} lúc {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p, %d/%m/%Y', true) }} tựa đề {{ states.sensor.rss_news_3.attributes.entries[0].title }} và nội dung: {{ states.sensor.all_news_1.attributes.entries[0].summary|striptags }} "
+        message: "Có tin mới cập nhật buổi {{ states('sensor.sys_buoi') }} lúc {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p, %d/%m/%Y', true) }} tựa đề {{ states.sensor.rss_news_3.attributes.entries[0].title }} và nội dung: {{ states.sensor.rss_news_3.attributes.entries[0].summary|striptags }} "
         entity_id: media_player.vali_demo
         speed: '1'
         voice_type: '{{["nu_mien_bac_01" , "nu_mien_bac_02" , "nam_mien_bac_01" , "nam_mien_bac_02" , "nu_mien_trung_01", "nam_mien_trung_01" , "nu_mien_nam_01" , "nu_mien_nam_02" , "nu_mien_nam_03" , "nam_mien_nam_01"] |random }} '        
