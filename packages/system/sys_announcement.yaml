@@ -93,7 +93,8 @@ sensor:
 tts_fpt:
  api_key: 'your_key'
   #See in the /custom_components/tts_fpt/readme.txt for more detail how to create FPT API
-
+# Service for play url file that given by FPT API
+media_extractor:
 
 #TTS of Vietnamese Viettel TTS
 tts_viettel:
@@ -106,7 +107,4 @@ tts_ggcloud:
  api: 'your Gooogle API' 
  #See in the /custom_components/tts_ggcloud/readme.txt for more detail how to create Google API
  url: 'your hass base URL'
- 
-# Service for play some thing
-media_extractor:
 
