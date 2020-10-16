@@ -20,8 +20,8 @@ This is step by step guide to intergrated these TTS Component to your Home Assis
 #TTS of Vietnamese FPT TTS
 tts_fpt:
  api_key: 'your_key'
-  #See in the /custom_components/tts_fpt/readme.txt for more detail how to create FPT API
-
+#See in the /custom_components/tts_fpt/readme.txt for more detail how to create FPT API
+#No need to use Base URL for this component
 # Service for play url file that given by FPT API
 media_extractor:
 
