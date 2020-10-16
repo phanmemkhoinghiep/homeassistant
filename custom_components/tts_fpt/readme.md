@@ -24,7 +24,7 @@ tts_fpt:
 #No need to use Base URL for this component
 # Service for play url file that given by FPT API
 media_extractor:
-
+```
 3. Restart your hass to active these TTS Component
 
 ### STEP2. Configure these TTS Component
