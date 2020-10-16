@@ -9,13 +9,7 @@ This is step by step guide to intergrated these TTS Component to your Home Assis
 
 1. Register Free FPT TTS Account and get API at: https://fpt.ai/
 
-2. Register Free Viettel TTS Account and get Token at: https://viettelgroup.ai/en
-
-3. Register and create Google API key at: https://support.google.com/googleapi/answer/6158862?hl=en
-
-4. Create folder name tts at local home assistant: www/tts
-
-5. Configure the API in your configuration.yaml
+2. Configure the API in your configuration.yaml
 ```sh
 #TTS of Vietnamese FPT TTS
 tts_fpt:
