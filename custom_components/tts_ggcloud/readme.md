@@ -14,17 +14,15 @@ This is step by step guide to intergrated these TTS Component to your Home Assis
 3. Configure the API in your configuration.yaml
 
 ```sh
-
 #TTS of Google Cloud TTS
 tts_ggcloud:
  api: 'your Gooogle API' 
  #See in the /custom_components/tts_ggcloud/readme.txt for more detail how to create Google API
  url: 'your hass base URL'
-
 ```
 4. Restart your hass to active these TTS Component
 
-### STEP2. Configure these TTS Component
+### STEP3. Configure these TTS Component
 1. Example script use Google Cloud TTS
 ```sh
 script:
@@ -39,4 +37,5 @@ script:
         language: "vi-VN" #May be from your input_select
         voice_name: "Google_Voice_1"' #May be from your input_select
 ```
-5. Enjoy with the TTS voice
+2. Reload script 
+3. Enjoy with the TTS voice
