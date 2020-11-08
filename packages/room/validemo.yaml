@@ -17,14 +17,6 @@ binary_sensor:
 
 ### Camera ###
 
-camera:
-
-  - platform: ffmpeg
-    name: wf_cam
-    input: rtsp://admin:123456@192.168.1.3:554     
-
-  
-
 light:
 
 # Zigbee Outlet
