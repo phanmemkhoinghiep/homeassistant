@@ -5,7 +5,7 @@
 DOMAIN = 'tts_zalo'
 SERVICE_ZALO_TTS = 'say'
 # config
-CONF_API_KEY = 'api_key'
+CONF_API_KEY = 'api'
 CONF_SPEED = 'speed'
 # data service
 CONF_PLAYER_ID = 'entity_id'
