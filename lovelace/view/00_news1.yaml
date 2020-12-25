@@ -1,0 +1,41 @@
+title: Tin tức
+icon: mdi:gate
+path: gate 
+panel: false # this renders the first card on full width, other cards in this view will not be rendered
+cards: 
+  - type: custom:vertical-style-card
+    title: Tin tức cập nhật 1
+    style:
+      font_size: 16px
+      border: true
+      background_color: var(--secondary-background-color)
+    cards:
+      - type: horizontal-stack
+        cards:
+        - type: markdown        
+          content: >
+            {{ states.sensor.rss_news_1.attributes.entries[0]|replace("[", "")|replace("]", "")|replace("{", "")|replace("}", "")|replace("title", "Tiêu đề")|replace("summary", "Nội dung") }}
+  - type: custom:vertical-style-card
+    title: Tin tức cập nhật 2
+    style:
+      font_size: 16px
+      border: true
+      background_color: var(--secondary-background-color)
+    cards:
+      - type: horizontal-stack
+        cards:
+        - type: markdown        
+          content: >
+            {{ states.sensor.rss_news_2.attributes.entries[0]|replace("[", "")|replace("]", "")|replace("{", "")|replace("}", "")|replace("title", "Tiêu đề")|replace("summary", "Nội dung") }}            
+  - type: custom:vertical-style-card
+    title: Tin tức cập nhật 3
+    style:
+      font_size: 16px
+      border: true
+      background_color: var(--secondary-background-color)
+    cards:
+      - type: horizontal-stack
+        cards:
+        - type: markdown        
+          content: >
+            {{ states.sensor.rss_news_1.attributes.entries[0]|replace("[", "")|replace("]", "")|replace("{", "")|replace("}", "")|replace("title", "Tiêu đề")|replace("summary", "Nội dung") }}            
