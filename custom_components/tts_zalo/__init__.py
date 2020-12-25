@@ -42,8 +42,6 @@ def setup(hass, config):
         # Body Parameters
         data = {'input': text_message.encode('utf-8'), 'speed': speed_read, 'encoder_type': encode_type,'speaker_id': speaker_id}
         # Get response from Server
-        url_file = requests.post(url, data = data, headers = header_parameters).json()['async']
-        # "The content will be returned after a few seconds under the async link, wait some seconds"
         url_file = requests.post(url, data = text_message, headers = header_parameters).json()['async']
         # "The content will be returned after a few seconds under the async link, wait some seconds"
         #time.sleep(2)
