@@ -9,7 +9,6 @@ background:  var(--background-image)
 views: 
 
   - !include lovelace/views/00_all.yaml
-  - !include lovelace/views/00_main.yaml
 # - !include lovelace/views/01_room.yaml
   - !include lovelace/views/01_vali.yaml    
   - !include lovelace/views/02_speak.yaml
