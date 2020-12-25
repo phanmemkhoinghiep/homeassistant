@@ -12,6 +12,12 @@ CONF_PLAYER_ID = 'entity_id'
 CONF_MESSAGE = 'message'
 CONF_VOICE_ID = 'voice_id'
 
+# audio file path
+
+CONF_FILE_PATH = '/config/www/tts/'
+CON_AUDIO_PATH = '/local/tts/'
+
+
 import requests, json, os, time, uuid, urllib, datetime
 
 def setup(hass, config):
@@ -33,15 +39,24 @@ def setup(hass, config):
         # Header Parameters
         header_parameters = {'api_key': zalo_api}
         # Body Parameters
-        text_message = {'input': text_message.encode('utf-8'), 'speed': speed_read, 'speaker_id': 1, 'voice': speaker_id}
+        data = {'input': text_message.encode('utf-8'), 'speed': speed_read, 'speaker_id': 1, 'voice': speaker_id}
         # Get response from Server
-        url_file = requests.post(url, data = text_message, headers = header_parameters).json()['async']
+        url_file = requests.post(url, data = data, headers = header_parameters).json()['async']
         # "The content will be returned after a few seconds under the async link, wait some seconds"
-        time.sleep(2)
+        response = requests.post(url, data=json.dumps(data), headers=headers, verify=False)
+        # Create unique audio file name
+        uniq_filename = 'tts_zalo_' + str(datetime.datetime.now().date()) + '_' + str(datetime.datetime.now().time()).replace(':', '.') + '.mp3'
+        # Open audio file     
+        audio_file = open(CONF_FILE_PATH + uniq_filename, 'wb')
+        # Write audio content to file
+        audio_file.write(response.content)
+        audio_file.close()
+        # Play audio file with Home Assistant Service#
+        url_file = url_hass + CON_AUDIO_PATH + uniq_filename
         # service data for 'CALL SERVICE' in Home Assistant
         service_data = {'entity_id': media_id, 'media_content_id': url_file, 'media_content_type': 'audio/mp3'}
         # Call service from Home Assistant
-        hass.services.call('media_extractor', 'play_media', service_data)
+        hass.services.call('media_player', 'play_media', service_data)
         
-    hass.services.register(DOMAIN, SERVICE_FPT_TTS, tts_handler)
+    hass.services.register(DOMAIN, SERVICE_ZALO_TTS, tts_handler)
     return True
