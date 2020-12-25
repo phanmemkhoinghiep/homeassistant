@@ -35,13 +35,13 @@ def setup(hass, config):
         # List voice of Zalo Speech Synthesis
         voice_id_list = {'nu_mien_bac_01': 2, 'nam_mien_bac_01': 4, 'nu_mien_nam_01': 1,'nam_mien_nam_02': 3}
         sepaker_id= voice_id_list.get(voice_id)
-        encoder_type= 1
+        encode_type= 1
         # HTTP Request
         url = 'https://api.zalo.ai/v1/tts/synthesize'
         # Header Parameters
-        header_parameters = {'api_key': zalo_api}
+        header_parameters = {'apikey': zalo_api}
         # Body Parameters
-        data = {'input': text_message.encode('utf-8'), 'speed': speed_read, 'speaker_id': 1, 'voice': speaker_id}
+        data = {'input': text_message.encode('utf-8'), 'speed': speed_read, 'encoder_type': encode_type,'speaker_id': speaker_id}
         # Get response from Server
         url_file = requests.post(url, data = data, headers = header_parameters).json()['async']
         # "The content will be returned after a few seconds under the async link, wait some seconds"
