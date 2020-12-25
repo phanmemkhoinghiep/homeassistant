@@ -3,19 +3,25 @@ This is step by step guide to intergrated these TTS Component to your Home Assis
 
 ### STEP1. Download to your Home Assistant Custom_Component Folder
 
-1. git clone or copy row file to your Home Assistant Custom_Component Folder
+1.1. git clone or copy row file to your Home Assistant Custom_Component Folder
 
-### STEP2. Configure these TTS Component
+### STEP2. Register and get Free Token/API from STT engines
 
-1. Register Free FPT TTS Account and get API at: https://fpt.ai/
+2.1. Register Free FPT TTS Account and get API at: https://fpt.ai/
 
-2. Register Free Viettel TTS Account and get Token at: https://viettelgroup.ai/en
+2.2. Register Free Viettel TTS Account and get Token at: https://viettelgroup.ai/en
 
-3. Register and create Google API key at: https://support.google.com/googleapi/answer/6158862?hl=en
+2.3. Register Free ZALO TTS Account and get Token at: https://zalo.ai/user-profile
 
-4. Create folder name tts at local home assistant: www/tts
+2.3. Register and create Google API key at: https://support.google.com/googleapi/answer/6158862?hl=en
 
-5. Configure the API in your configuration.yaml
+### STEP3. Configure these TTS Component
+
+3.1. Create folder name tts at local home assistant: www/tts
+
+3.2. Configure the API in your configuration.yaml
+
+3.2.1. Configure Example for FPT TTS
 ```sh
 #TTS of Vietnamese FPT TTS
 tts_fpt:
@@ -24,13 +30,17 @@ tts_fpt:
 #No need to use Base URL for this component
 # Service for play url file that given by FPT API
 media_extractor:
-
+```
+3.2.2. Configure Example for Viettel TTS
+```sh
 #TTS of Vietnamese Viettel TTS
 tts_viettel:
  token: 'your Viettel Token' 
    #See in the /custom_components/tts_viettel/readme.txt for more detail how to create Viettel API
  url: 'your hass base URL'
- 
+ ```
+ 3.2.3. Configure Example for Google Cloud TTS
+```sh
 #TTS of Google Cloud TTS
 tts_ggcloud:
  api: 'your Gooogle API' 
@@ -38,10 +48,10 @@ tts_ggcloud:
  url: 'your hass base URL'
 
 ```
-3. Restart your hass to active these TTS Component
+3.3. Restart your hass to active these TTS Component
 
-### STEP2. Configure these TTS Component
-1. Example script use FPT TTS
+### STEP4. Configure these TTS Component
+4.1. Example script use FPT TTS
 
 ```sh
 service
@@ -54,7 +64,7 @@ service
         voice_type: 'nu_mien_bac' 
         speed: '1.0'
 ```
-2. Example script use Viettel TTS
+4.2. Example script use Viettel TTS
 ```sh
 script:
   viettel_reading_08:
@@ -67,7 +77,7 @@ script:
         speed: '1.0'  
 
 ```
-3. Example script use Google Cloud TTS
+4.3. Example script use Google Cloud TTS
 ```sh
 script:
   gg_reading_01:  #May be from your script name
