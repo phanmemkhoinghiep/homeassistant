@@ -31,7 +31,15 @@ tts_fpt:
 # Service for play url file that given by FPT API
 media_extractor:
 ```
-3.2.2. Configure Example for Viettel TTS
+3.2.3. Configure Example for Zalo TTS
+```sh
+#TTS of Vietnamese Zalo TTS
+tts_zalo:
+ api_key: 'your Zalo API' 
+   #See in the /custom_components/tts_zalo/readme.txt for more detail how to create Zalo API
+ url: 'your hass base URL'
+  ```
+3.2.3. Configure Example for Viettel TTS
 ```sh
 #TTS of Vietnamese Viettel TTS
 tts_viettel:
@@ -39,7 +47,7 @@ tts_viettel:
    #See in the /custom_components/tts_viettel/readme.txt for more detail how to create Viettel API
  url: 'your hass base URL'
  ```
- 3.2.3. Configure Example for Google Cloud TTS
+ 3.2.4. Configure Example for Google Cloud TTS
 ```sh
 #TTS of Google Cloud TTS
 tts_ggcloud:
@@ -64,7 +72,20 @@ service
         voice_type: 'nu_mien_bac' 
         speed: '1.0'
 ```
-4.2. Example script use Viettel TTS
+4.2. Example script use Zalo TTS
+```sh
+script:
+  zalo_reading_07:
+    sequence:  
+    - service: tts_zalo.say
+      data_template:
+        entity_id: media_player.note4    
+        message: "{{ Your text here }}
+        voice_type: 'nu_mien_nam_01'    
+        speed: '1.0'  
+
+```
+4.3. Example script use Viettel TTS
 ```sh
 script:
   viettel_reading_08:
@@ -73,11 +94,11 @@ script:
       data_template:
         entity_id: media_player.note4    
         message: "{{ Your text here }}
-        voice_type: 'nu_mien_nam_1'    
+        voice_type: 'nu_mien_nam_01'    
         speed: '1.0'  
 
 ```
-4.3. Example script use Google Cloud TTS
+4.2. Example script use Google Cloud TTS
 ```sh
 script:
   gg_reading_01:  #May be from your script name
