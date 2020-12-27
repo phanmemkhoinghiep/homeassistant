@@ -35,7 +35,7 @@ media_extractor:
 ```sh
 #TTS of Vietnamese Zalo TTS
 tts_zalo:
- api_key: 'your Zalo API' 
+ api: 'your Zalo API' 
    #See in the /custom_components/tts_zalo/readme.txt for more detail how to create Zalo API
   ```
 3.2.3. Configure Example for Viettel TTS
