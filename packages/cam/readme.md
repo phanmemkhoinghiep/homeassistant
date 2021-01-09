@@ -14,8 +14,8 @@ camera:
 ```
 3.2. Add rest_command to Hass
 ```sh
-rest_command: #Hass sẽ gửi HTTP Rest tới Cam PTZ qua mạng LAN
-  wf_cam_ptz_momentary: #Đây là template lệnh quay quét của Caem
+rest_command: #Hass will send HTTP Rest Request to Cam PTZ within LAN
+  wf_cam_ptz_momentary: #This is  template rest_command to move PTZ Camera from the current position
     url: http://192.168.1.3/ISAPI/PTZCtrl/channels/1/Momentary
     method: PUT
     payload: '<PTZData>
@@ -30,7 +30,7 @@ rest_command: #Hass sẽ gửi HTTP Rest tới Cam PTZ qua mạng LAN
     password: password
     content_type: 'application/xml'
     verify_ssl: false
-  wf_cam_ptz_absolute: #Đây là template lệnh đưa CAM về 1 vị trí cố định
+  wf_cam_ptz_absolute: #This is  template rest_command to move PTZ Camera to the fixed position
     url: http://192.168.1.3/ISAPI/PTZCtrl/channels/1/Absolute
     method: PUT
     payload: '<PTZData>
@@ -47,7 +47,7 @@ rest_command: #Hass sẽ gửi HTTP Rest tới Cam PTZ qua mạng LAN
   ```
 3.3. Restart Hass
 #4. Add Hass
-4.1. Add Script to control PTZ Camera from the current position
+4.1. Add Script to move PTZ Camera from the current position
 ```sh
 script:
 #PTZ Camera
@@ -60,7 +60,7 @@ script:
           tilt: 0 # ( The value is -100..100) 
           zoom: 0   ( The value is -100..100)
 ```
-4.2. Add Script to move PTZ Camera from the current posittion to predefined position
+4.2. Add Script to move PTZ Camera from the current posittion to the fixed position
 
 ```sh
   # azimuth: 0..3300, elevation: 0..900, absoluteZoom: 10..40
