@@ -46,8 +46,11 @@ rest_command: #Hass will send HTTP Rest Request to Cam PTZ within LAN
     verify_ssl: false
   ```
 3.3. Restart Hass
+
 #4. Add Hass
+
 4.1. Add Script to move PTZ Camera from the current position
+
 ```sh
 script:
 #PTZ Camera
