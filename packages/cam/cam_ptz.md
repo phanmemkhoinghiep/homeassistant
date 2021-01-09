@@ -2,13 +2,13 @@
 #Enable “digest/basic” verification for Web. The menu path is: Configuration > System > Security > Verification > Web verification.
 #Create an extra user if don't want use Admin user: Configuration > System > User management > User management > Add. Choose for the level of ‘operator’ and check if ‘Remote PTZ control’ is enabled for this new user. The username and password are referred to as PTZ_USER_NAME and PTZ_PASSWORD in the description below.
 #Fixed the IP address of the camera in the Camera configuration or Modem /Router WiFi.
-
+''
 camera:
 
   - platform: ffmpeg
     name: wf_cam_ptz
     input: rtsp://admin:password@192.168.1.3:554     
-
+''
 rest_command: #Hass sẽ gửi HTTP Rest tới Cam PTZ qua mạng LAN
   wf_cam_momentary: #Đây là template lệnh quay quét của Caem
     url: http://192.168.1.3/ISAPI/PTZCtrl/channels/1/Momentary
