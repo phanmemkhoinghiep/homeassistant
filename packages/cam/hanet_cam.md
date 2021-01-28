@@ -1,22 +1,39 @@
 #Step 1: Configuration Hass
+
 1.1. Go to Configuration, Intergrations, Add Intergrations
+
 1.2. Search and select IFTTT, OK
+
 1.3 Copy IFTT Webhook Url
+
 1.4 Replace the local ip address of Hass in IFTT Webhook URL with external (Base URL) of Hass
+
 1.5 Write down this Webhook URL
+
 #Step 2: Configuration in Hanet Developers Page
+
 2.1. Go to http://developers.hanet.ai/, console
-2.2. Create an App.
+
+2.2. Create an App
+
 2.3. Put the Webhook URL in 1.5 in to WebHook filed
+
 2.4. Save and close 
+
 #Step3: Configuration in Hanet Connect App
+
 3.1. Go to Home Tab
+
 3.2. Select the Camera
+
 3.3. Select three dot in the upper right conner to go to the Camera Setting
+
 3.4. Select Annoucement Section, Anncoucement Setting
+
 3.5. Enable Annoucment for Execute, Stranger, Customer
 
 #Step4: Add configuration to Configuration File in Hass
+
 3.1. Add rest_command to Hass
 ```sh
 camera:
