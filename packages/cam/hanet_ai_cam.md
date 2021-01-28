@@ -38,14 +38,7 @@
 
 #Step4: Add configuration to Configuration File in Hass
 
-3.1. Add rest_command to Hass
-```sh
-camera:
-  - platform: ffmpeg
-    name: wf_cam_ptz
-    input: rtsp://admin:password@192.168.1.3:554     
-```
-3.2. Add rest_command to Hass
+4.1. Create Automation to Hass
 ```sh
 - id: '1611224207667'
   alias: Test Cam Hanet phát hiện nhân viên
@@ -107,5 +100,5 @@ camera:
       voice_type: nu_mien_bac_01
   mode: single 
   ```
-3.3. Reload Automation
+4.2. Reload Automation
 
