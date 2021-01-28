@@ -12,13 +12,17 @@
 
 #Step 2: Configuration in Hanet Developers Page
 
-2.1. Go to http://developers.hanet.ai/, console
+2.1. Go to http://developers.hanet.ai/
 
-2.2. Create an App
+2.2. Select console
 
-2.3. Put the Webhook URL in 1.5 in to WebHook filed
+2.3. Login with Hanet Account that control the Hanet AI Camera
 
-2.4. Save and close 
+2.4. Create an App
+
+2.5. Put the Webhook URL in 1.5 in to WebHook filed
+
+2.6. Save and close 
 
 #Step3: Configuration in Hanet Connect App
 
