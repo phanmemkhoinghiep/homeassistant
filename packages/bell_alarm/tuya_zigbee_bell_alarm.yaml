@@ -1,0 +1,47 @@
+#Step 1: Add Tuya Zigbee to MQTT
+
+1.1. Pair Device
+
+1.2. Watch zigbee2mqtt log until sucesss
+
+1.3 Go to HomeAssistant Configuration Entities
+
+1.4 Write down the mac address of the unit (For example: 0x5c0272fffecebc93)
+
+#Step2: Add configuration to Configuration File in Hass
+
+2.1. Create Script to Hass
+```sh
+an_chuong_cua:
+  sequence:
+  - service: mqtt.publish
+    data:
+      topic: zigbee2mqtt/0x5c0272fffecebc93/set
+      payload_template: '{"volume": low}'
+  - service: mqtt.publish
+    data:
+      topic: zigbee2mqtt/0x5c0272fffecebc93/set
+      payload_template: '{"melody": 3}'
+  - service: mqtt.publish
+    data:
+      topic: zigbee2mqtt/0x5c0272fffecebc93/set
+      payload_template: '{"alarm": true}'
+  - service: mqtt.publish
+    data:
+      topic: zigbee2mqtt/0x5c0272fffecebc93/set
+      payload_template: '{"duration": 12}'
+  ```
+2.2. Create Automation using this Script
+- id: '1610075831389'
+  alias: Chuông Cửa
+  description: Chuông Cửa
+  trigger:
+    platform: state
+    entity_id: sensor.0x00158d0004264279_click
+  condition: []
+  action:
+  - service: script.an_chuong_cua
+    data: {}
+  mode: single
+2.3. Reload Script & Automation
+
