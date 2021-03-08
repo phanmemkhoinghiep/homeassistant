@@ -395,7 +395,20 @@ automation:
 
 script:
 
-  
+  phat_nhac_buoi_sang:
+    sequence:
+    - service: media_player.play_media
+      data_template:
+        media_content_type: music/mp3
+        media_content_id: '{{["http://external_url/local/music/chaobuoisang_01.mp3" , "http://external_url/local/music/chaobuoisang_02.mp3" , "http://external_url/local/music/chaobuoisang_03.mp3" , "http://external_url/local/music/chaobuoisang_04.mp3"] |random }} '
+      entity_id: media_player.phong_da_nang_speaker
+    - delay: '30:00'
+    - service: media_player.play_media
+      data_template:
+        media_content_type: music/mp3
+        media_content_id: '{{["http://external_url/local/music/chaobuoisang_01.mp3" , "http://external_url/local/music/chaobuoisang_02.mp3" , "http://external_url/local/music/chaobuoisang_03.mp3" , "http://external_url/local/music/chaobuoisang_04.mp3"] |random }} '
+      entity_id: media_player.phong_da_nang_speaker
+      
 #ON Light
 
   on_tat_ca_den:
