@@ -1,10 +1,18 @@
 {
   "domain": "tts_ggcloud",
   "name": "tts_ggcloud",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "documentation": "https://github.com/mcdull/homeassistant/new/master/custom_components/tts_ggcloud",
   "dependencies": [],
   "codeowners": [],
   "requirements": [],
   "iot_class": "cloud_polling"
+  "updater": {
+    "version": "1.0.1",
+    "releaseNotes": "-- Add manifest file",
+    "files": [
+      "__init__.py",
+      "manifest.json",
+      "services.yaml"
+    ]
 }
