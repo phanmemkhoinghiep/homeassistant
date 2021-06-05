@@ -6,7 +6,7 @@
   "dependencies": [],
   "codeowners": [],
   "requirements": [],
-  "iot_class": "cloud_polling"
+  "iot_class": "cloud_polling",
   "updater": {
     "version": "1.0.1",
     "releaseNotes": "-- Add manifest file",
@@ -15,4 +15,5 @@
       "manifest.json",
       "services.yaml"
     ]
+  }
 }
