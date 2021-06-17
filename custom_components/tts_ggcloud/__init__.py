@@ -1,4 +1,3 @@
-
 # Declare variables
 DOMAIN = 'tts_ggcloud'
 SERVICE_GGCLOUD_TTS = 'say'
@@ -63,7 +62,7 @@ def setup(hass, config):
     	# Play audio file with Home Assistant Service#	
         url_file = url_hass + CON_AUDIO_PATH + uniq_filename
         # service data for 'CALL SERVICE' in Home Assistant
-        service_data = {'entity_id': media_id, 'media_content_id': url_file, 'media_content_type': 'audio/mp3'}
+        service_data = {'entity_id': media_id, 'media_content_id': url_file, 'media_content_type': 'music'}
         # Call service from Home Assistant
         hass.services.call('media_player', 'play_media', service_data)
         
