@@ -12,7 +12,6 @@
     "releaseNotes": "-- Add manifest file",
     "files": [
       "__init__.py",
-      "sensor.py",
       "manifest.json",
       "services.yaml"
     ]
