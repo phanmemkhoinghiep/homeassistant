@@ -1,0 +1,20 @@
+{
+  "domain": "tts_fpt",
+  "name": "TTS FPT",
+  "version": "1.0",
+  "documentation": "https://github.com/phanmemkhoinghiep/homeassistant/new/master/custom_components/tts_fpt",
+  "dependencies": [],
+"codeowners": ["Nguyễn Duy"],
+  "requirements": [],
+  "iot_class": "cloud_polling",
+  "updater": {
+    "version": "1.1",
+    "releaseNotes": "-- Add manifest file",
+    "files": [
+      "__init__.py",
+      "sensor.py",
+      "manifest.json",
+      "services.yaml"
+    ]
+  }
+}
