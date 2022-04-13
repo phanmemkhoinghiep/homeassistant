@@ -1,6 +1,6 @@
 {
   "domain": "tts_ggcloud",
-  "name": "tts_ggcloud",
+  "name": "GOOGLE CLOUD TTS",
   "version": "1.0.1",
   "documentation": "https://github.com/mcdull/homeassistant/new/master/custom_components/tts_ggcloud",
   "dependencies": [],
