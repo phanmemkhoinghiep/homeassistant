@@ -1,7 +1,11 @@
 #Step 1: Configuration Cam
+
 1.1. Enable “digest/basic” verification for Web. The menu path is: Configuration > System > Security > Verification > Web verification.
+
 1.2. Create an extra user if don't want use Admin user: Configuration > System > User management > User management > Add. Choose for the level of ‘operator’ and check if ‘Remote PTZ control’ is enabled for this new user. The username and password are referred to as PTZ_USER_NAME and PTZ_PASSWORD in the description below.
+
 1.3. Fixed the IP address of the camera in the Camera configuration or Modem /Router WiFi.
+
 #Step2: Add Cam Stream to Hass
 
 #Step3: Add configuration to Configuration File in Hass
