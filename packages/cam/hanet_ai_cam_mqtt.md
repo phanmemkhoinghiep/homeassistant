@@ -1,4 +1,14 @@
-4.1. Create Automation to Hass
+
+1.1. Create Hanet configuration in Hass Configuration File
+
+```sh
+platform: "mqtt"
+name: "hanet_camera_Nhận diện khuôn mặt"
+state_topic: "/topic/detected/C20371B322"
+value_template: "{{ value_json.person_type 
+  ```
+
+1.3. Create Automation to Hass
 ```sh
 alias: Nhận diện khuôn mặt mở cửa
 description: ''
